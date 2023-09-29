@@ -7,6 +7,7 @@
   <script src="script.js"></script>
 </head>
 <body>
+  <p>quelque chose</p>
   ...
   <!-- Le reste du contenu -->
   ...
