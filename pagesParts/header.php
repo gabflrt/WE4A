@@ -3,9 +3,9 @@
         <nav>
             <ul>
                 <li><a href="#">Accueil</a></li>
-                <li><a href="#">Produits</a></li>
-                <li><a href="#">Panier</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">La Carte</a></li>
+                <li><a href="#">Commander</a></li>
+                <li><a href="#">Réserver une table</a></li>
             </ul>
         </nav>
     </header>

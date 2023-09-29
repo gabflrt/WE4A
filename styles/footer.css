@@ -1,6 +1,6 @@
 /* Style du footer */
 footer {
-    position:absolute;
+    position:relative;
     bottom:0;
     width:100%;    
     background-color: #333;
