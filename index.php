@@ -8,6 +8,7 @@
 </head>
 <body>
   <p>quelque chose</p>
+  <p>test</p>
   ...
   <!-- Le reste du contenu -->
   ...
