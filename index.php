@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Ma Boutique en Ligne</title>
 </head>
 
@@ -30,23 +31,20 @@
         <img src="images/plat1.jpg" alt="Image 1">
         <img src="images/plat2.jpg" alt="Image 2">
         <img src="images/plat3.jpg" alt="Image 3">
+        
     </div>
-
+    
     <section class="presentation">
+        <a href="#" class="bouton">Découvrir nos produits</a>
         <p>Que vous veniez pour un dîner romantique, une sortie en famille ou un repas entre amis, 
         <strong>Nom de votre restaurant</strong> est l'endroit idéal pour découvrir la richesse de la cuisine française 
         tout en savourant des produits locaux frais et de qualité. Rejoignez-nous et laissez-nous vous faire voyager 
         à travers les délices de la France, le tout à un prix qui ne pèsera pas sur votre portefeuille. 
         Nous avons hâte de vous accueillir et de vous faire vivre une expérience gastronomique exceptionnelle.</p>
-
-        <a href="#" class="bouton">Découvrir nos produits</a>
-
-    </section>
-    <section class="produits">
-        <!-- Vous pouvez ajouter ici la liste de vos produits avec des images et des descriptions -->
     </section>
     
     <?php include("./pagesParts/footer.php"); ?>
+    <script src="scripts/carrousel.js"></script>
 
 </body>
 </html>

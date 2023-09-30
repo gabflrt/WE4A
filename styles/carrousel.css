@@ -1,27 +1,24 @@
-/* ... Vos styles précédents ... */
-
-/* Style du carrousel */
 .carrousel {
     overflow: hidden;
     white-space: nowrap;
-    width: 100%; /* Assurez-vous que le carrousel occupe tout l'espace */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
 }
 
 .carrousel img {
     width: 250px;
     height: auto;
     margin-right: 10px;
-    box-shadow: 3px 3px 5px #808080;
-    animation: scroll 20s linear infinite; /* Animation du défilement automatique */
+    box-shadow: 3px 3px 5px #808080; 
+    border-radius: 10px; 
+    transition: opacity 0.3s;  
 }
 
-/* Animation du défilement automatique */
-@keyframes scroll {
-    0% {
-        transform: translateX(400%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-    
+.carrousel img:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
+
+
