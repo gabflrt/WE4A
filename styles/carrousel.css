@@ -1,0 +1,27 @@
+/* ... Vos styles précédents ... */
+
+/* Style du carrousel */
+.carrousel {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%; /* Assurez-vous que le carrousel occupe tout l'espace */
+}
+
+.carrousel img {
+    width: 250px;
+    height: auto;
+    margin-right: 10px;
+    box-shadow: 3px 3px 5px #808080;
+    animation: scroll 20s linear infinite; /* Animation du défilement automatique */
+}
+
+/* Animation du défilement automatique */
+@keyframes scroll {
+    0% {
+        transform: translateX(400%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+    
+}

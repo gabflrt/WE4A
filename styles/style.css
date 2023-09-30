@@ -39,11 +39,13 @@ nav a {
 
 .presentation h1 {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .presentation p {
     font-size: 1.2rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
     margin-bottom: 1rem;
 }
 
