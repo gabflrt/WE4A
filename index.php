@@ -31,6 +31,7 @@
         <img src="images/plat1.jpg" alt="Image 1">
         <img src="images/plat2.jpg" alt="Image 2">
         <img src="images/plat3.jpg" alt="Image 3">
+        <img src="images/plat4.jpg" alt="Image 4" class="hidden">
         
     </div>
     
@@ -41,8 +42,10 @@
         tout en savourant des produits locaux frais et de qualité. Rejoignez-nous et laissez-nous vous faire voyager 
         à travers les délices de la France, le tout à un prix qui ne pèsera pas sur votre portefeuille. 
         Nous avons hâte de vous accueillir et de vous faire vivre une expérience gastronomique exceptionnelle.</p>
+
     </section>
-    
+
+       
     <?php include("./pagesParts/footer.php"); ?>
     <script src="scripts/carrousel.js"></script>
 

@@ -21,4 +21,8 @@
     cursor: pointer;
 }
 
+.carrousel img.hidden {
+    display: none;
+}
+
 
