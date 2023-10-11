@@ -31,9 +31,9 @@
         <img src="images/plat1.jpg" alt="Image 1">
         <img src="images/plat2.jpg" alt="Image 2">
         <img src="images/plat3.jpg" alt="Image 3">
-        <img src="images/plat4.jpg" alt="Image 4" class="hidden">
-        
+        <img src="images/plat4.jpg" alt="Image 4" class="hidden">        
     </div>
+    <script src="scripts/carrousel.js"></script>
     
     <section class="presentation">
         <a href="#" class="bouton">Découvrir nos produits</a>
@@ -42,12 +42,24 @@
         tout en savourant des produits locaux frais et de qualité. Rejoignez-nous et laissez-nous vous faire voyager 
         à travers les délices de la France, le tout à un prix qui ne pèsera pas sur votre portefeuille. 
         Nous avons hâte de vous accueillir et de vous faire vivre une expérience gastronomique exceptionnelle.</p>
+    </section>       
 
-    </section>
+    <div class="infos">
+        <div class="horaires-ouverture">
+            
+            <h2>Horaires d'ouverture <span class="cercle"></span></h2>            
+            <p>Lundi : Fermé</p>
+            <p>Mardi - Vendredi : 12h00 - 22h00</p>
+            <p>Samedi : 12h00 - 23h00</p>
+            <p>Dimanche : 12h00 - 15h00</p>
+        </div>
 
-       
+        <div class="carte">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.1128419427807!2d6.843922484615831!3d47.64250745027049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47923bcbe48d9815%3A0x236ca5f1738937d5!2sUTBM%20Campus%20de%20Belfort!5e0!3m2!1sfr!2sfr!4v1697029067621!5m2!1sfr!2sfr" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
     <?php include("./pagesParts/footer.php"); ?>
-    <script src="scripts/carrousel.js"></script>
 
-</body>
+    </body>
 </html>

@@ -6,6 +6,11 @@ header {
     align-items: center;
     justify-content: space-between; 
     padding: 1rem;
+    position: fixed;
+    top: 0; /* En-tête fixé en haut de la fenêtre */
+    left: 0;
+    width: 100%; /* En-tête occupe toute la largeur de la fenêtre */
+    z-index: 100;
 }
 
 header img {
@@ -24,5 +29,10 @@ a{
     color: #fff;
     text-decoration: none;
     margin-right: 10px;
+}
+
+nav{
+    display:absolute;
+    align-items:center;
 }
 
