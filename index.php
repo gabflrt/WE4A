@@ -48,7 +48,7 @@
     <div class="infos">
         <div class="horaires-ouverture">
             
-            <h2>Horaires d'ouverture <span class="cercle"></span></h2>            
+            <h2>Horaires d'ouverture <span class="cercle" style="background-color: red;"></span></h2>  
             <p>Lundi : Fermé</p>
             <p>Mardi - Vendredi : 12h00 - 22h00</p>
             <p>Samedi : 12h00 - 23h00</p>
