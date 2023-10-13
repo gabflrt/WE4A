@@ -101,6 +101,7 @@ while ($boucle < $RecettesTotales):
     $description = $result['description'];
     $prix = $result['prix'];
     $chaud = $result['chaud'];   
+    $image = $result['image']; 
     $image = $result['image'];
     ?>
 
@@ -110,6 +111,9 @@ while ($boucle < $RecettesTotales):
     <p><?=$description?></p>
     <p>Prix : <?=$prix?></p>
     <p>chaud : <?=$chaud?></p>
+    <?php echo '<img src="images/'.$image.'jpg"/>'; ?>
+
+    
     <img src = "data:image/png;base64,<?=base64_encode($image)?>" width = "200px" height = "200px"/>
   </div>
 <?php        

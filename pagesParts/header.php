@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="styles/header.css">
     <header>
-    <img src="images/logo.jpg" alt="Logo">
+    <a href="./index.php"><img src="images/logo.jpg" alt="Logo"></a>
         <nav>
             <ul>
                 <li><a href="./index.php">Accueil</a></li>
@@ -10,6 +10,6 @@
         </nav>
         <div class ="login">
             <a href="#">Connexion</a>
-            <img src="images/panier.png" alt="Panier">
+            <a href="./index.php"><img src="images/panier.png" alt="Panier"></a>
         </div>
     </header>
