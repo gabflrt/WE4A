@@ -106,21 +106,12 @@ while ($boucle < $RecettesTotales):
     
 
   <div class="plat">
-<<<<<<< HEAD
-    <h2>Description</h2>
-    <p><?=$description?></p>
-    <p>Prix : <?=$prix?></p>
-    <p>chaud : <?=$chaud?></p>  
-    <img src = "data:image/png;base64,<?=base64_encode($image)?>" width = "210px" height = "210px"/>
-    <h1><?=$nom?></h1>
-=======
     <h1><?=$nom?></h1>
     <h2 class="contenu">Description</h2>
     <p class="contenu"><?=$description?></p>
     <p class="contenu">Prix : <?=$prix?></p>
     <p class="contenu">chaud : <?=$chaud?></p>  
     <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
->>>>>>> eed7d242f02d1ce95855c0b785f74be9dde4f3bd
   </div>
 <?php        
 
