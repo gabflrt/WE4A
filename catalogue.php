@@ -60,7 +60,7 @@
 
   <?php
 
-$PlatsParPages = 5;
+$PlatsParPages = 6;
 $CalculNombrePlats = $db->prepare("SELECT * FROM plats WHERE type='plat'");
 $CalculNombrePlats->execute();
 $NombreMaxPages = ($CalculNombrePlats->RowCount())/$PlatsParPages;
@@ -103,7 +103,14 @@ while ($boucle < $RecettesTotales):
     $chaud = $result['chaud'];   
     $image = $result['image']; 
     $image = $result['image'];
+
+    if($boucle==$RecettesTotales/2+1){
+      ?></div>
+      <div class="plats">
+      <?php
+    }
     ?>
+    
 
   <div class="plat">
     <h1><?=$nom?></h1>

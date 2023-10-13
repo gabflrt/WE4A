@@ -1,6 +1,5 @@
 .plats {
     display: flex;
-
 }
 
 .plat {
@@ -13,13 +12,13 @@ a {
     color: black;
 }
 
-.plat img{
-    position: absolute;
-    top: 80px;
+.plat img {
+    position: relative;
+    top: -120px;
     z-index: 10;
-    box-shadow: 3px 3px 5px #808080; 
-    border-radius: 10px; 
-    transition: opacity 0.3s;  
+    box-shadow: 3px 3px 5px #808080;
+    border-radius: 10px;
+    transition: opacity 0.3s;
 }
 
 .plat img:hover {
