@@ -7,9 +7,11 @@ header {
     
     padding: 1rem;
     position: fixed;
-    top: 0; /* En-tête fixé en haut de la fenêtre */
+    top: 0;
+    /* En-tête fixé en haut de la fenêtre */
     left: 0;
-    width: 100%; /* En-tête occupe toute la largeur de la fenêtre */
+    width: 100%;
+    /* En-tête occupe toute la largeur de la fenêtre */
     z-index: 100;
 }
 
@@ -18,24 +20,15 @@ header img {
     height: 40px;
 }
 
-.login{
-    display:flex;
-    align-items: center
+.login {
+    display: flex;
+    align-items: center;
 }
 
-a{
+a {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #fff;
     text-decoration: none;
     margin-right: 10px;
 }
-
-nav{
-    display:block;
-    text-align: center;
-}
-
-
-
-
