@@ -37,7 +37,7 @@
     <script src="scripts/carrousel.js"></script>
     
     <section class="presentation">
-        <a href="#" class="bouton">Découvrir nos produits</a>
+        <a href="./catalogue.php" class="bouton">Découvrir nos produits</a>
         <p>Que vous veniez pour un dîner romantique, une sortie en famille ou un repas entre amis, 
         <strong>Nom de votre restaurant</strong> est l'endroit idéal pour découvrir la richesse de la cuisine française 
         tout en savourant des produits locaux frais et de qualité. Rejoignez-nous et laissez-nous vous faire voyager 

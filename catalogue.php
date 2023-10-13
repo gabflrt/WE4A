@@ -101,6 +101,7 @@ while ($boucle < $RecettesTotales):
     $description = $result['description'];
     $prix = $result['prix'];
     $chaud = $result['chaud'];   
+    $image = $result['image']; 
     ?>
 
   <div class="plat">
@@ -109,6 +110,9 @@ while ($boucle < $RecettesTotales):
     <p><?=$description?></p>
     <p>Prix : <?=$prix?></p>
     <p>chaud : <?=$chaud?></p>
+    <?php echo '<img src="images/'.$image.'jpg"/>'; ?>
+
+    
   </div>
 <?php        
 
