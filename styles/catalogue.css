@@ -22,6 +22,11 @@ a {
     transition: opacity 0.3s;  
 }
 
+.plat h1{
+    position: absolute;
+    top: 300px;
+}
+
 .plat img:hover {
     opacity: 0.2;
     cursor: pointer;

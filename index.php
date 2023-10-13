@@ -60,6 +60,28 @@
         </div>
     </div>
 
+    <div class ="contact">
+        <div class="formulaire">
+        <h1>Contactez-nous</h1><br>
+        <p>Par téléphone : +33123456789</p><br>
+        <p>Ou par mail :</p><br>
+        <form method="post">
+            <label>Votre email :</label><br>
+            <input type="email" name="email" required><br>
+            <label>Message :</label><br>
+            <textarea name="message" required></textarea><br>
+            <input type="submit" class="bouton">
+        </form>
+    <?php
+    if (isset($_POST['message'])) {
+        $retour = mail('quentin.macullo@gmail.com', 'Envoi depuis la page Contact', $_POST['message'], 'From: webmaster@monsite.fr' . "\r\n" . 'Reply-to: ' . $_POST['email']);
+        if($retour)
+            echo '<p>Votre message a bien été envoyé.</p>';
+    }
+    ?>
+        </div>
+    </div>
+
     <?php include("./pagesParts/footer.php"); ?>
 
     </body>

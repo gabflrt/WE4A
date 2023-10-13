@@ -45,10 +45,9 @@
     background-color: #f4f4f4;
     padding: 30px;
     border: 1px solid #ccc;
+    box-shadow: 3px 3px 5px #808080; 
     border-radius: 5px;
     margin-left: 18%;
-    margin-bottom: 20%;
-
 }
 
 .horaires-ouverture h2 {
@@ -76,6 +75,25 @@
 
 .carte {
     margin-right: 15%;
-    margin-bottom: 20%;
     margin-left: 10%;
+}
+
+.contact {
+    display: block;
+    height: 400px;
+    width: 500px;
+    background-color: #f4f4f4;
+    padding: 2%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #808080; 
+    margin: 0 auto;
+    margin-top : 3%;
+    margin-bottom : 3%;       
+}
+
+.formulaire {
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
 }
