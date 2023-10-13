@@ -91,7 +91,7 @@ $boucle = 0;
 
 
 
-<div class="">
+<div class="plats">
 <?php
 while ($boucle < $RecettesTotales):
   $result = $RecettesTotalesReq->fetch();
@@ -101,12 +101,12 @@ while ($boucle < $RecettesTotales):
     $description = $result['description'];
     $prix = $result['prix'];
     $chaud = $result['chaud'];   
-    $color = 'white';
     ?>
 
-  <div>
-    <h1>Nom : <?=$nom?></h1>
-    <p>Description : <?=$description?></p>
+  <div class="plat">
+    <h1><?=$nom?></h1>
+    <h2>Description</h2>
+    <p><?=$description?></p>
     <p>Prix : <?=$prix?></p>
     <p>chaud : <?=$chaud?></p>
   </div>
@@ -133,8 +133,7 @@ if($pageCourante==$NombreMaxPages){
 
 
 
-<nav role="navigation" aria-label="pagination">
-
+<nav class="navigation" role="navigation">
   <a href="<?=$siteweb.$pageprec?>">Page précédente</a>
   <a href="<?=$siteweb.$pagesuiv?>">Page suivante</a>
   <ul>
@@ -151,7 +150,9 @@ if($pageCourante==$NombreMaxPages){
 </nav>
 
 
-
+<?php
+    include 'pagesParts/footer.php'
+?>
 
 </body>
 </html>

@@ -1,0 +1,14 @@
+.plats {
+    display: flex;
+
+}
+
+.plat {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navigation {
+    color: black;
+}
