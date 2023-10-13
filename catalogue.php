@@ -22,38 +22,31 @@
 ?>
 
 
-<div class="block">
-  <div class="recette">
-    <!-- <img src="images/bg.jpg" alt="Un beau plat" class="recette-image">-->
-    <div class="recette-content">
-      <div class="tabs is-centered">
-        <ul>
-          <li>
-            <a href="cuisine-recettes-entree.php">
-              <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-              <span>Entrées</span>
-            </a>
-          </li>
-          <li class="is-active">
-            <a href="cuisine-recettes.php">
-              <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
-              <span>Plats</span>
-            </a>
-          </li>
-          <li>
-            <a href="cuisine-recettes-dessert.php">
-              <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-              <span>Desserts</span>
-            </a>
-            <a href="cuisine-recettes-dessert.php">
-              <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-              <span>Boissons</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+
+<table class="menu">
+  <tr>
+    <td>
+      <a href="./catalogue.php">
+        <h3>Entrées</h3>
+      </a>
+    </td>
+    <td>
+      <a href="./catalogue.php">
+        <h3>Plats</h3>
+      </a>
+    </td>
+    <td>
+      <a href="./catalogue.php">
+        <h3>Desserts</h3>
+      </a>
+    </td>
+    <td>
+      <a href="./catalogue.php">
+        <h3>Boissons</h3>
+      </a>
+    </td>
+  </tr>
+</table>
 
 
   <!-- Pagination -->
@@ -114,11 +107,11 @@ while ($boucle < $RecettesTotales):
 
   <div class="plat">
     <h1><?=$nom?></h1>
-    <h2>Description</h2>
-    <p><?=$description?></p>
-    <p>Prix : <?=$prix?></p>
-    <p>chaud : <?=$chaud?></p>  
-    <img src = "data:image/png;base64,<?=base64_encode($image)?>" width = "210px" height = "210px"/>
+    <h2 class="contenu">Description</h2>
+    <p class="contenu"><?=$description?></p>
+    <p class="contenu">Prix : <?=$prix?></p>
+    <p class="contenu">chaud : <?=$chaud?></p>  
+    <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
   </div>
 <?php        
 
@@ -144,18 +137,16 @@ if($pageCourante==$NombreMaxPages){
 
 
 <nav class="navigation" role="navigation">
-  <a href="<?=$siteweb.$pageprec?>">Page précédente</a>
-  <a href="<?=$siteweb.$pagesuiv?>">Page suivante</a>
   <ul>
-    <li><a href="<?=$siteweb. 1?>" aria-label="Goto page 1">1</a></li>
+    <li><a href="<?=$siteweb. 1?>" aria-label="Goto page 1"><h3>1</h3></a></li>
     <li><span>&hellip;</span></li>
-    <li><a href="<?=$siteweb.$pageprec?>" aria-label="Goto page 45"><?=$pageprec?></a></li>
-    <li><a aria-label="Page 46" aria-current="page"><?=$pageCourante?></a></li>
+    <li><a href="<?=$siteweb.$pageprec?>" aria-label="Goto page 45"><h3><?=$pageprec?></h3></a></li>
+    <li><a aria-label="Page 46" aria-current="page"><h3><?=$pageCourante?></h3></a></li>
     <form method="post">
-    <li><a href="<?=$siteweb.$pagesuiv?>" id="pagesuivante" name="pagesuivante" aria-label="Goto page 47"><?=$pagesuiv?></a></li>
+    <li><a href="<?=$siteweb.$pagesuiv?>" id="pagesuivante" name="pagesuivante" aria-label="Goto page 47"><h3><?=$pagesuiv?></h3></a></li>
   </form>
     <li><span>&hellip;</span></li>
-    <li><a href="<?=$siteweb.$NombreMaxPages?>" aria-label="Goto page 86"><?=$NombreMaxPages?></a></li>
+    <li><a href="<?=$siteweb.$NombreMaxPages?>" aria-label="Goto page 86"><h3><?=$NombreMaxPages?></h3></a></li>
   </ul>
 </nav>
 

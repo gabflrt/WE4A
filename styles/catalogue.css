@@ -1,27 +1,62 @@
+.menu {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6%;
+    position: relative;
+    align-items: center;
+}
+
+.menu td {
+    width: 20%;
+    text-align: center;
+}
+
+
+
+h3 {
+    color: black;
+}
+
 .plats {
     display: flex;
+
 }
 
 .plat {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 60%;
+    margin-bottom: -8%;
 }
 
-a {
-    color: black;
+h1 {
+    text-align: center;
+}
+
+.contenu {
+    margin-left: 30%;
 }
 
 .plat img {
-    position: relative;
+    display: block;
     top: -120px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
     z-index: 10;
     box-shadow: 3px 3px 5px #808080;
     border-radius: 10px;
     transition: opacity 0.3s;
+    width: 80%;
+    height: 60%;
 }
 
 .plat img:hover {
     opacity: 0.2;
     cursor: pointer;
+}
+
+.navigation {
+    margin-top: 3%;
 }
