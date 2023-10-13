@@ -111,7 +111,12 @@ while ($boucle < $RecettesTotales):
     <p><?=$description?></p>
     <p>Prix : <?=$prix?></p>
     <p>chaud : <?=$chaud?></p>
+<<<<<<< HEAD
     <img src = "data:image/jpg;base64,<?=base64_encode($image)?>" width = "210px" height = "210px"/>
+=======
+    
+    <img src = "data:image/png;base64,<?=base64_encode($image)?>" width = "200px" height = "200px"/>
+>>>>>>> 89ba06644bd62a4f4505c3323a1f5273c25223a0
   </div>
 <?php        
 
