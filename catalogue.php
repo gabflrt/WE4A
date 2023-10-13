@@ -113,9 +113,9 @@ while ($boucle < $RecettesTotales):
     <p class="contenu">chaud : <?=$chaud?></p>  
     <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
   </div>
-<?php        
+  <?php        
 
-endwhile;
+  endwhile;
 
 
 $pageprec = $pageCourante-1;
