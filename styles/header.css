@@ -3,8 +3,7 @@ header {
     background-color: #333;
     display: flex;
     color: #fff;   
-    justify-content: space-between; 
-    
+    justify-content: space-between;     
     padding: 1rem;
     position: fixed;
     top: 0;
@@ -16,8 +15,8 @@ header {
 }
 
 header img {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
 }
 
 .login {
@@ -25,9 +24,14 @@ header img {
     align-items: center;
 }
 
+ul {
+    display: flex;
+    align-items: center;
+}
+
 a {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1em;
     color: #fff;
     text-decoration: none;
     margin-right: 10px;

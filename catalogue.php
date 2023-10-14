@@ -113,7 +113,7 @@ while ($boucle < $RecettesTotales):
   </div>
 <?php   
 
-endwhile;
+  endwhile;
 
 
 $pageprec = $pageCourante-1;
