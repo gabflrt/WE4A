@@ -26,22 +26,22 @@
 <table class="menu">
   <tr>
     <td>
-      <a href="./catalogue.php">
+      <a href="./catalogue.php?type=entree">
         <h3>Entrées</h3>
       </a>
     </td>
     <td>
-      <a href="./catalogue.php">
+      <a href="./catalogue.php?type=plat">
         <h3>Plats</h3>
       </a>
     </td>
     <td>
-      <a href="./catalogue.php">
+      <a href="./catalogue.php?type=dessert">
         <h3>Desserts</h3>
       </a>
     </td>
     <td>
-      <a href="./catalogue.php">
+      <a href="./catalogue.php?type=boisson">
         <h3>Boissons</h3>
       </a>
     </td>
@@ -72,7 +72,16 @@ if(!empty($_POST['pagesuivante'])) {
 $depart = ($pageCourante - 1) * $PlatsParPages;
 $result =false;
 $searchid = 1;
-$RecettesTotalesReq = $db->prepare("SELECT * FROM plats WHERE type='plat' ORDER BY id_plat DESC LIMIT $depart,$PlatsParPages");
+
+if( $_GET['type']){
+  $type =$_GET['type'];
+  $type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
+  $RecettesTotalesReq = $db->prepare("SELECT * FROM plats WHERE type=:type ORDER BY id_plat DESC LIMIT $depart,$PlatsParPages");
+  $RecettesTotalesReq->bindParam(':type', $type);
+}else{
+  $RecettesTotalesReq = $db->prepare("SELECT * FROM plats ORDER BY id_plat DESC LIMIT $depart,$PlatsParPages");
+}
+
 $RecettesTotalesReq->execute();
 $RecettesTotales = $RecettesTotalesReq->RowCount();
 $boucle = 0;

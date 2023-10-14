@@ -6,7 +6,7 @@
 
         if(!empty($mail) && !empty($mdp))
         {
-            $q = $db->prepare("SELECT * FROM joueur WHERE mail = :mail");
+            $q = $db->prepare("SELECT * FROM clients WHERE mail = :mail");
             $q->execute(['mail' => $mail]);
             $result = $q->fetch();
 
@@ -16,11 +16,9 @@
                 if(password_verify($mdp, $hashmdp)){
                     echo "<p>Vous venez de vous connecter avec l'adresse mail : ".$mail." !</p>";
                     $_SESSION['mail'] = $result['mail'];
-                    $_SESSION['pseudo'] = $result['pseudo'];
                     $_SESSION['prenom'] = $result['prenom'];
                     $_SESSION['nom'] = $result['nom'];
-                    $_SESSION['date_naissance'] = $result['date_naissance'];
-                    setcookie('pseudo', $mail, time() + (30*24*3600));
+                    setcookie('mail', $mail, time() + (30*24*3600));
                 }else{
                     echo "Mot de passe incorrecte";
                 }

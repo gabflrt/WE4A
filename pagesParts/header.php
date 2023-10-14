@@ -9,7 +9,7 @@
             </ul>
         </nav>
         <div class ="login">
-            <a href="#">Connexion</a>
+            <a href="./login.php">Connexion</a>
             <a href="./index.php"><img src="images/panier.png" alt="Panier"></a>
         </div>
     </header>
