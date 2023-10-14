@@ -56,7 +56,7 @@
 $PlatsParPages = 6;
 $CalculNombrePlats = $db->prepare("SELECT * FROM plats WHERE type='plat'");
 $CalculNombrePlats->execute();
-$NombreMaxPages = ($CalculNombrePlats->RowCount())/$PlatsParPages;
+$NombreMaxPages = ceil(($CalculNombrePlats->RowCount())/$PlatsParPages);
 
 if(isset($_GET['page']) AND !empty($_GET['page']) AND ($_GET['page'] <= $NombreMaxPages)){
   $_GET['page'] = intval($_GET['page']);
@@ -87,21 +87,19 @@ $boucle = 0;
 <div class="plats">
 <?php
 while ($boucle < $RecettesTotales):
-  $result = $RecettesTotalesReq->fetch();
-  $boucle = $boucle + 1;
-
+    if($boucle==$PlatsParPages/2){
+      ?></div>
+      <div class="plats">
+      <?php
+    }
+    $result = $RecettesTotalesReq->fetch();
+    $boucle = $boucle + 1;
     $nom = $result['nom'];
     $description = $result['description'];
     $prix = $result['prix'];
     $chaud = $result['chaud'];   
     $image = $result['image']; 
     $image = $result['image'];
-
-    if($boucle==$RecettesTotales/2+1){
-      ?></div>
-      <div class="plats">
-      <?php
-    }
     ?>
     
 
@@ -113,7 +111,7 @@ while ($boucle < $RecettesTotales):
     <p class="contenu">chaud : <?=$chaud?></p>  
     <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
   </div>
-<?php        
+<?php   
 
 endwhile;
 
