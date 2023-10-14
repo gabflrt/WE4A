@@ -46,17 +46,17 @@
     </section>       
 
     <div class="infos">
-        <div class="horaires-ouverture">
-            
-            <h2>Horaires d'ouverture <span class="cercle" style="background-color: red;"></span></h2>  
+        <div class="horaires-ouverture">            
+            <h2>Horaires d'ouverture <span id="cercle" style="background-color: red;"></span></h2>  
             <p>Lundi : Fermé</p>
             <p>Mardi - Vendredi : 12h00 - 22h00</p>
             <p>Samedi : 12h00 - 23h00</p>
             <p>Dimanche : 12h00 - 15h00</p>
         </div>
-
+        <script src="scripts/ouverture.js"></script>
+        
         <div class="carte">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.1128419427807!2d6.843922484615831!3d47.64250745027049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47923bcbe48d9815%3A0x236ca5f1738937d5!2sUTBM%20Campus%20de%20Belfort!5e0!3m2!1sfr!2sfr!4v1697029067621!5m2!1sfr!2sfr" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.1128419427807!2d6.843922484615831!3d47.64250745027049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47923bcbe48d9815%3A0x236ca5f1738937d5!2sUTBM%20Campus%20de%20Belfort!5e0!3m2!1sfr!2sfr!4v1697029067621!5m2!1sfr!2sfr" width="400" height="260" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 
@@ -69,7 +69,7 @@
             <label>Votre email :</label><br>
             <input type="email" name="email" required><br>
             <label>Message :</label><br>
-            <textarea name="message" required></textarea><br>
+            <textarea name="message" required></textarea><br><br>
             <input type="submit" class="bouton">
         </form>
     <?php
