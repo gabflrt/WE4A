@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <link rel="stylesheet" href="styles/header.css">
     <header>
         <nav>
@@ -9,7 +10,46 @@
             </ul>
         </nav>
         <div class ="login">
-            <a href="./login.php">Connexion</a>
-            <a href="./index.php"><img src="images/panier.png" alt="Panier"></a>
+             <!--Formulaire de connexion-->
+        <?php 
+        include './includes/database.php';
+        global $db;
+         if($_SESSION == true){
+            echo' <form method="post"> <br />
+                <input class="submit" type="submit" name="deco" id="deco" value="Se déconnecter">
+            </form>';
+         }else{
+            echo '
+            <form method="post" class="connection"> 
+                <input type="text" name="mail" id="mail" placeholder="E-Mail" required>
+                <input type="password" name="mdp" id="mdp" placeholder="Mot de passe" required>
+                <input type="submit" name="formlogin" id="formlogin" value="Connection">
+            </form>';
+         }?>
+        
+        <br />
+        <?php
+            if(isset($_POST['deco'])){
+                session_destroy();
+            }
+            include './includes/log.php';
+        ?>
+        
+        <!--Sinon autoriser possibilité de s'inscrire ou si connecté, de modifier son profil -->
+        <?php
+        /* 
+         if($_SESSION == true){
+            echo '<a href="modifications.php">
+                <button type="submit" class="submit">Modifier le profil</button>
+                </a>';
+        }else{
+            echo '<a href="./creation_compte.php"> 
+                <button type="submit" class="submit">Inscription</button>
+                </a>';
+        }
+        */
+        ?>
+
+        <!--    <a href="./index.php"><img src="images/panier.png" alt="Panier"></a>-->
         </div>
     </header>
