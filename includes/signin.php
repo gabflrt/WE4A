@@ -18,17 +18,19 @@ if(isset($_POST['formsend'])){
 
         
         if ($verif_mail_result == 0){
-            if ($verif_pseudo_result ==0){
+            
                     if($query = $db->prepare("INSERT INTO clients(nom,prenom,adresse,mail,num,naissance,mdp) 
                     VALUES(:nom,:prenom,:adresse,:mail,:num,:naissance,:mdp)")){
                 
                 $query->execute([
                     'nom' => $nom,
                     'prenom' => $prenom,
-                    'pseudo' => $pseudo,
+                    'adresse' => $adresse,
                     'mail' => $mail,
-                    'mdp' => $hashmdp,
-                    'naissance'=>$date_naissance
+                    'num' => $num,
+                    'naissance'=>$date_naissance,
+                    'mdp' => $hashmdp
+                
                 ]);
                     }
                     else echo("Statement failed: ". $query->error . "<br>");
@@ -36,9 +38,7 @@ if(isset($_POST['formsend'])){
             
             echo "votre prénom : ". $prenom . "<br/>";
         echo "votre email : ".$mail. "<br/>";
-            } else {
-                echo "Le pseudo appartient déjà à un compte...";
-            }
+            
             
         } else {
             echo "L'email appartient déjà à un compte...";

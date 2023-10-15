@@ -37,17 +37,17 @@
         
         <!--Sinon autoriser possibilité de s'inscrire ou si connecté, de modifier son profil -->
         <?php
-        /* 
+        
          if($_SESSION == true){
             echo '<a href="modifications.php">
                 <button type="submit" class="submit">Modifier le profil</button>
                 </a>';
         }else{
             echo '<a href="./creation_compte.php"> 
-                <button type="submit" class="submit">Inscription</button>
+                <button type="submit" id="inscription" class="submit">Inscription</button>
                 </a>';
         }
-        */
+        
         ?>
 
         <!--    <a href="./index.php"><img src="images/panier.png" alt="Panier"></a>-->

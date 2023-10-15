@@ -46,6 +46,7 @@ while ($boucle < $NombrePlatsPage):
     }
     $result = $PlatsTotalReq->fetch();
     $boucle = $boucle + 1;
+    $plat=$result['id_plat'];
     $nom = $result['nom'];
     $description = $result['description'];
     $prix = $result['prix'];
@@ -60,7 +61,7 @@ while ($boucle < $NombrePlatsPage):
     <p class="contenu"><?=$description?></p>
     <p class="contenu">Prix : <?=$prix?></p>
     <p class="contenu">chaud : <?=$chaud?></p>  
-    <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
+    <a href="#" onclick="loadDetails(<?=$plat?>)"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
   </div>
 <?php   
 

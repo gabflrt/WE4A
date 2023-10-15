@@ -32,6 +32,18 @@ function loadPlatsPage(type,page) {
     }
   });
 }
+
+function loadDetails(plat) {
+    $.get({
+      url: "get_details.php", 
+      data:{
+        "plat":plat
+      },
+      success: function(result){
+      $("#div1").html(result);
+    }
+  });
+}
 </script>
 </head>
 
@@ -52,7 +64,7 @@ function loadPlatsPage(type,page) {
       </a>
     </td>
     <td>
-      <a href="#" onclick="loadPlatsType('plat'); return false;">
+      <a href="#" onclick="loadPlatsType('plat');">
         <h3>Plats</h3>
       </a>
     </td>

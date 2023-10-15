@@ -20,10 +20,10 @@
                     $_SESSION['nom'] = $result['nom'];
                     setcookie('mail', $mail, time() + (30*24*3600));
                 }else{
-                    echo "Mot de passe incorrecte";
+                    echo "<script type='text/javascript'>alert('Mot de passe incorrecte');</script>";
                 }
             }else{
-                echo "Aucun compte n'a été créé avec l'adresse mail : ".$mail." ...";
+                echo "<script type='text/javascript'>alert('Aucun compte n'a été créé avec l'adresse mail : '.$mail.' ...');</script>";
             }
         }
     }
