@@ -3,7 +3,10 @@
 include 'includes/database.php';
 global $db;
 $PlatsParPages = 6;
-$CalculNombrePlats = $db->prepare("SELECT * FROM plats WHERE type='plat'");
+$type =$_GET['type'];
+$type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
+$CalculNombrePlats = $db->prepare("SELECT * FROM plats WHERE type=:type");
+$CalculNombrePlats->bindParam(':type', $type);
 $CalculNombrePlats->execute();
 $NombreMaxPages = ceil(($CalculNombrePlats->RowCount())/$PlatsParPages);
 
@@ -21,12 +24,11 @@ if(!empty($_POST['pagesuivante'])) {
 $depart = ($pageCourante - 1) * $PlatsParPages;
 $result =false;
 $searchid = 1;
-$type =$_GET['type'];
-$type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
-$RecettesTotalesReq = $db->prepare("SELECT * FROM plats WHERE type=:type ORDER BY id_plat DESC LIMIT $depart,$PlatsParPages");
-$RecettesTotalesReq->bindParam(':type', $type);
-$RecettesTotalesReq->execute();
-$RecettesTotales = $RecettesTotalesReq->RowCount();
+
+$PlatsTotalReq = $db->prepare("SELECT * FROM plats WHERE type=:type ORDER BY id_plat DESC LIMIT $depart,$PlatsParPages");
+$PlatsTotalReq->bindParam(':type', $type);
+$PlatsTotalReq->execute();
+$NombrePlatsPage = $PlatsTotalReq->RowCount();
 $boucle = 0;
 
 ?>
@@ -36,13 +38,13 @@ $boucle = 0;
 
 <div class="plats">
 <?php
-while ($boucle < $RecettesTotales):
+while ($boucle < $NombrePlatsPage):
     if($boucle==$PlatsParPages/2){
       ?></div>
       <div class="plats">
       <?php
     }
-    $result = $RecettesTotalesReq->fetch();
+    $result = $PlatsTotalReq->fetch();
     $boucle = $boucle + 1;
     $nom = $result['nom'];
     $description = $result['description'];
@@ -64,9 +66,12 @@ while ($boucle < $RecettesTotales):
 
   endwhile;
 
-  for($i=0; $i<(abs($PlatsParPages/2-$RecettesTotales%($PlatsParPages/2)));$i++){
+if($pageCourante==$NombreMaxPages){
+  for($i=0; $i<(abs($PlatsParPages/2-$NombrePlatsPage%($PlatsParPages/2)));$i++){
     ?> <div class="plat"></div><?php  
   }
+}
+  
 
 
 $pageprec = $pageCourante-1;
@@ -85,14 +90,14 @@ if($pageCourante==$NombreMaxPages){
 
 <nav class="navigation" role="navigation">
   <ul>
-    <li><a href="<?=$siteweb. 1?>" aria-label="Goto page 1"><h3>1</h3></a></li>
+    <li><a href="#" onclick="loadPlatsPage('<?=$type?>',1)" aria-label="Goto page 1"><h3>1</h3></a></li>
     <li><span>&hellip;</span></li>
-    <li><a href="<?=$siteweb.$pageprec?>" aria-label="Goto page 45"><h3><?=$pageprec?></h3></a></li>
+    <li><a href="#" onclick="loadPlatsPage('<?=$type?>',<?=$pageprec?>)" aria-label="Goto page 45"><h3><?=$pageprec?></h3></a></li>
     <li><a aria-label="Page 46" aria-current="page"><h3><?=$pageCourante?></h3></a></li>
     <form method="post">
-    <li><a href="<?=$siteweb.$pagesuiv?>" id="pagesuivante" name="pagesuivante" aria-label="Goto page 47"><h3><?=$pagesuiv?></h3></a></li>
+    <li><a href="#" onclick="loadPlatsPage('<?=$type?>',<?=$pagesuiv?>)" id="pagesuivante" name="pagesuivante"><h3><?=$pagesuiv?></h3></a></li>
   </form>
     <li><span>&hellip;</span></li>
-    <li><a href="<?=$siteweb.$NombreMaxPages?>" aria-label="Goto page 86"><h3><?=$NombreMaxPages?></h3></a></li>
+    <li><a href="#" onclick="loadPlatsPage('<?=$type?>',<?=$NombreMaxPages?>)"><h3><?=$NombreMaxPages?></h3></a></li>
   </ul>
 </nav>

@@ -9,7 +9,7 @@
     <title>Liste des plats</title>
 
     <script>
-    function loadPlats(type) {
+    function loadPlatsType(type) {
     $.get({
       url: "get_plats.php", 
       data:{
@@ -19,6 +19,18 @@
       $("#div1").html(result);
     }
 });
+}
+function loadPlatsPage(type,page) {
+    $.get({
+      url: "get_plats.php", 
+      data:{
+        "type":type,
+        "page":page
+      },
+      success: function(result){
+      $("#div1").html(result);
+    }
+  });
 }
 </script>
 </head>
@@ -35,22 +47,22 @@
 <table class="menu">
   <tr>
     <td>
-      <a href="#" onclick="loadPlats('entree');">
+      <a href="#" onclick="loadPlatsType('entree');">
         <h3>Entrées</h3>
       </a>
     </td>
     <td>
-      <a href="#" onclick="loadPlats('plat'); return false;">
+      <a href="#" onclick="loadPlatsType('plat'); return false;">
         <h3>Plats</h3>
       </a>
     </td>
     <td>
-      <a href="#" onclick="loadPlats('dessert'); return false;">
+      <a href="#" onclick="loadPlatsType('dessert'); return false;">
         <h3>Desserts</h3>
       </a>
     </td>
     <td>
-      <a href="#" onclick="loadPlats('boisson'); return false;">
+      <a href="#" onclick="loadPlatsType('boisson'); return false;">
         <h3>Boissons</h3>
       </a>
     </td>
