@@ -64,6 +64,10 @@ while ($boucle < $RecettesTotales):
 
   endwhile;
 
+  for($i=0; $i<(abs($PlatsParPages/2-$RecettesTotales%($PlatsParPages/2)));$i++){
+    ?> <div class="plat"></div><?php  
+  }
+
 
 $pageprec = $pageCourante-1;
 if($pageCourante==1){
