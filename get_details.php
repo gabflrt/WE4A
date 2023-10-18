@@ -22,4 +22,10 @@ $image = $result['image'];
     <p class="contenu">Prix : <?=$prix?></p>
     <p class="contenu">chaud : <?=$chaud?></p>  
     <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
+    <a href="#"> 
+<button type="submit" id="panier" class="submit">Ajouter au panier</button>
+  </a>
+  
   </div>
+
+</div>

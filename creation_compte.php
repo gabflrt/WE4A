@@ -9,7 +9,6 @@
     <body>
         <?php
         include './pagesParts/header.php';
-        include './includes/database.php';
         include './includes/signin.php';
         global $db;
         ?>
