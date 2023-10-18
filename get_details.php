@@ -22,10 +22,45 @@ $image = $result['image'];
     <p class="contenu">Prix : <?=$prix?></p>
     <p class="contenu">chaud : <?=$chaud?></p>  
     <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
+    <input type="number" class="choix" value="1" min="1">
+ 
     <a href="#"> 
-<button type="submit" id="panier" class="submit">Ajouter au panier</button>
-  </a>
+<button type="submit" id="ajouterAuPanier" class="choix">Ajouter au panier</button>
+</a>
+</div>
+<div id="panier" class="panier">
+<h2>Panier</h2>
+</div>
+
+<script>
+var listpanier = [];
+
+document.getElementById('ajouterAuPanier').addEventListener('click', function() {
+    // Ajoutez votre élément au panier ici.
+    // Par exemple, si votre élément est un objet avec un nom et un prix :
+    var element = {nom: 'Nom de l\'élément', prix: 10.00};
+    listpanier.push(element);
+
+    // Mettez à jour l'affichage du panier.
+    var panierDiv = document.getElementById('panier');
+
+    var panier = document.getElementById('panier');
+    if (panier.classList.contains('ouvert')) {
+        // Si le panier est déjà ouvert, fermez-le.
+        panier.classList.remove('ouvert');
+    } else {
+        // Sinon, ouvrez le panier.
+       
+        panier.classList.add('ouvert');
+        panierDiv.innerHTML = '<h2>Panier</h2>';
+    for (var i = 0; i < listpanier.length; i++) {
+        panierDiv.innerHTML += '<p>' + listpanier[i].nom + ': ' + listpanier[i].prix + '€</p>';
+    }
+    }
+});
+</script>
   
-  </div>
+  
+  
 
 </div>

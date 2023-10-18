@@ -65,8 +65,27 @@ h1 {
     margin-top: 4%;
 }
 
-#panier {
+.choix {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.panier {
+    /* Positionne le panier à droite et hors de la vue par défaut */
+    position: fixed;
+    right: -300px;
+    /* Assurez-vous que cela correspond à la largeur du panier */
+    width: 300px;
+    height: 100%;
+    background: #f8f9fa;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: right 0.5s ease;
+    color: black;
+}
+
+.panier.ouvert {
+    /* Lorsque le panier est ouvert, il se déplace vers la gauche pour être visible */
+    right: 0;
 }

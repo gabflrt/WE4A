@@ -44,6 +44,8 @@ function loadDetails(plat) {
     }
   });
 }
+
+
 </script>
 </head>
 
