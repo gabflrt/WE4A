@@ -1,4 +1,20 @@
-<?php session_start(); ?>
+<?php
+session_start();
+
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['mail'])) {
+    // Redirige vers la page d'accueil du back end si l'utilisateur n'est pas connecté
+    header('Location: ./accueil.php');
+    exit;
+}
+// Vérifie si l'utilisateur est un client
+if ($_SESSION['admin'] == 0) {
+    // Redirige vers la page d'accueil du front end si l'utilisateur est un client
+    header('Location: ../index.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,10 +27,10 @@
 
 <body>
 
-    <?php include("back_header.php"); ?>
+<?php include("./back_header.php"); ?>
     
 
-    <?php include("../pagesParts/footer.php"); ?>
+    <?php include("./back_footer.php"); ?>
 
     </body>
 </html>

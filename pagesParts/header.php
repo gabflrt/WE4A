@@ -39,7 +39,7 @@
         <?php
         
          if($_SESSION == true){
-            echo '<a href="modifications.php">
+            echo '<a href="creation_compte.php">
                 <button type="submit" class="submit">Profil</button>
                 </a>';
         }else{

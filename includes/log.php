@@ -18,6 +18,7 @@
                     $_SESSION['mail'] = $result['mail'];
                     $_SESSION['prenom'] = $result['prenom'];
                     $_SESSION['nom'] = $result['nom'];
+                    $_SESSION['admin'] = $result['admin'];
                     setcookie('mail', $mail, time() + (30*24*3600));
                 }else{
                     echo "<script type='text/javascript'>alert('Mot de passe incorrecte');</script>";
