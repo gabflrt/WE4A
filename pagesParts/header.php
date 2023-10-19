@@ -20,10 +20,11 @@
             </form>';
          }else{
             echo '
-            <form method="post" class="connection"> 
+            <button id="loginButton" class="submit">Connexion</button>
+            <form id="loginForm" method="post" class="connection" style="display: none;"> 
                 <input type="text" name="mail" id="mail" placeholder="E-Mail" required>
                 <input type="password" name="mdp" id="mdp" placeholder="Mot de passe" required>
-                <input type="submit" name="formlogin" id="formlogin" value="Connection">
+                <input type="submit" name="formlogin" id="formlogin" value="Connexion">
             </form>';
          }?>
         
@@ -49,6 +50,20 @@
         }
         
         ?>
+
+<script>
+document.getElementById('loginButton').addEventListener('click', function() {
+    var form = document.getElementById('loginForm');
+    var button = document.getElementById('loginButton');
+    var inscription = document.getElementById('inscription');
+
+
+    form.style.display = 'block';
+    form.style.animation = 'slidein 0.5s';
+inscription.style.animation = 'slidein 0.5s';
+    button.style.display = 'none';
+});
+</script>
 
         <!--    <a href="./index.php"><img src="images/panier.png" alt="Panier"></a>-->
         </div>
