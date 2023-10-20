@@ -27,7 +27,7 @@ h3 {
     margin-left: auto;
     margin-right: auto;
     width: 60%;
-    margin-bottom: -8%;
+    margin-bottom: -2%;
 }
 
 h1 {
@@ -40,16 +40,17 @@ h1 {
 
 .plat img {
     display: block;
-    top: -120px;
+    top: -5rem;
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    margin-bottom: 20 rem;margin-bottom: 20 rem;
     z-index: 10;
     box-shadow: 3px 3px 5px #808080;
     border-radius: 10px;
     transition: opacity 0.3s;
-    width: 80%;
-    height: 60%;
+    width: 21,33rem;
+    height: 12rem;
 }
 
 .plat img:hover {

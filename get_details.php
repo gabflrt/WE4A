@@ -38,7 +38,12 @@ var listpanier = [];
 document.getElementById('ajouterAuPanier').addEventListener('click', function() {
     // Ajoutez votre élément au panier ici.
     // Par exemple, si votre élément est un objet avec un nom et un prix :
-    var element = {nom: 'Nom de l\'élément', prix: 10.00};
+    
+    var nomproduit = <?php echo json_encode($nom) ?>;
+    var prixproduit = <?php echo json_encode($prix); ?>;
+
+    var element = {nom: nomproduit, prix: prixproduit};
+    
     listpanier.push(element);
 
     // Mettez à jour l'affichage du panier.

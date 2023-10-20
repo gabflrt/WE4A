@@ -3,7 +3,7 @@
     <header>
         <nav>
             <ul>
-                <a href="./index.php"><img src="images/logo.jpg" alt="Logo"></a>
+                <a href="./index.php"><img src="images/logo.png" alt="Logo"></a>
                 <li><a href="./index.php">Accueil</a></li>
                 <li><a href="./catalogue.php">La Carte</a></li>
                 <li><a href="#">Réserver une table</a></li>
