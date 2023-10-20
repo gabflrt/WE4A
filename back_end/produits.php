@@ -28,6 +28,7 @@ if ($_SESSION['admin'] == 0) {
 
     <?php include("./back_header.php"); ?>
     
+    
 
     <?php include("./back_footer.php"); ?>
 

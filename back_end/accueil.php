@@ -2,7 +2,7 @@
 session_start();
 
 // Vérifie si l'utilisateur est un client
-if ($_SESSION['admin'] == 0) {
+if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
     // Redirige vers la page d'accueil du front end si l'utilisateur est un client
     header('Location: ../index.php');
     exit;
