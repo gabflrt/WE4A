@@ -140,7 +140,6 @@ function loadDetails(plat) {
   </div>
 </div>
 
-
 <?php
     include 'pagesParts/footer.php'
 ?>
