@@ -8,6 +8,7 @@ $PlatsTotalReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
 $PlatsTotalReq->bindParam(':plat', $plat);
 $PlatsTotalReq->execute();
 $result = $PlatsTotalReq->fetch();
+$id=$result['id_plat'];
 $nom = $result['nom'];
 $description = $result['description'];
 $prix = $result['prix'];
@@ -30,18 +31,29 @@ $image = $result['image'];
 </div>
 <div id="panier" class="panier">
 <h2>Panier</h2>
+<p>Le panier est vide.</p>
+<button type="button" id="fermerPanier" class="fermerPanier">Fermer</button>
 </div>
 
 <script>
 var listpanier = [];
 
+document.getElementById('fermerPanier').addEventListener('click', function() {
+    var panier = document.getElementById('panier');
+    panier.classList.remove('ouvert');
+});
+
 document.getElementById('ajouterAuPanier').addEventListener('click', function() {
-    // Ajoutez votre élément au panier ici.
-    // Par exemple, si votre élément est un objet avec un nom et un prix :
-    
     var nomproduit = <?php echo json_encode($nom) ?>;
     var prixproduit = <?php echo json_encode($prix); ?>;
+// Créer une liste d'identifiants de produits
+var productIds = [<?php echo json_encode($id) ?>,<?php echo json_encode($id) ?>];
 
+// Convertir la liste en chaîne pour le stockage dans un cookie
+var productIdsString = JSON.stringify(productIds);
+
+// Créer le cookie "panier"
+document.cookie = "panier=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
     var element = {nom: nomproduit, prix: prixproduit};
     
     listpanier.push(element);
