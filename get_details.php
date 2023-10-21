@@ -63,10 +63,10 @@ document.cookie = "panier=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:
 
     var panier = document.getElementById('panier');
     if (panier.classList.contains('ouvert')) {
-        // Si le panier est déjà ouvert, fermez-le.
+        // Si le panier est déjà ouvert, ferme le panier.
         panier.classList.remove('ouvert');
     } else {
-        // Sinon, ouvrez le panier.
+        // Sinon, ouvre le panier.
        
         panier.classList.add('ouvert');
         panierDiv.innerHTML = '<h2>Panier</h2>';
