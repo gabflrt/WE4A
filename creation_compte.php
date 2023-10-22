@@ -39,7 +39,7 @@
             <input class="register" name="adresse" type="text" placeholder="Votre Adresse" required><br/>
             <input class="register" id="mail_register" name="mail" type="text" placeholder="Votre Email" required><br/>
             <input class="register" name="num" type="text" placeholder="Votre Numéro" required><br/>
-            <input class="register" name="date_naissance" type="date" value="2003-06-29" min="1910-01-01" max="2022-05-01"  ><br/>
+            <input class="register" name="date_naissance" type="date" min="1910-01-01" max="2022-05-01"  ><br/>
             <input class="register" name="mdp" type="password" placeholder="Votre Mot de passe" required><br/>
             <input class="register" name="mdp2" type="password" placeholder="Confirmer votre Mot de passe" required><br/>
             <input type="submit" name="signin" id="signin" value="OK">
