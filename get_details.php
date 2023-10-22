@@ -31,8 +31,12 @@ $image = $result['image'];
 </div>
 <div id="panier" class="panier">
 <h2>Panier</h2>
-<p>Le panier est vide.</p>
+<div id="panierContenu">
+    <p>Le panier est vide.</p>
+</div>
 <button type="button" id="fermerPanier" class="fermerPanier">Fermer</button>
+<button type="button" id="viderPanier" class="viderPanier">Vider le panier</button>
+<button type="button" id="commander" class="commander">Commander</button>
 </div>
 
 <script>
@@ -59,25 +63,32 @@ document.cookie = "panier=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:
     listpanier.push(element);
 
     // Mettez à jour l'affichage du panier.
-    var panierDiv = document.getElementById('panier');
+    var panierDiv = document.getElementById('panierContenu');
 
     var panier = document.getElementById('panier');
-    if (panier.classList.contains('ouvert')) {
-        // Si le panier est déjà ouvert, ferme le panier.
-        panier.classList.remove('ouvert');
-    } else {
-        // Sinon, ouvre le panier.
+    if (!panier.classList.contains('ouvert')) {
        
         panier.classList.add('ouvert');
-        panierDiv.innerHTML = '<h2>Panier</h2>';
+        panierDiv.innerHTML = '';
     for (var i = 0; i < listpanier.length; i++) {
         panierDiv.innerHTML += '<p>' + listpanier[i].nom + ': ' + listpanier[i].prix + '€</p>';
     }
     }
 });
+
+document.getElementById('viderPanier').addEventListener('click', function() {
+    listpanier = [];
+    var panierDiv = document.getElementById('panierContenu');
+    panierDiv.innerHTML = '<p>Le panier est vide.</p>';
+});
+
+document.getElementById('commander').addEventListener('click', function() {
+    var panierDiv = document.getElementById('panierContenu');
+    panierDiv.innerHTML = '<p>Commande effectuée.</p>';
+    listpanier = [];
+    window.location.href = "./panier.php";
+    
+});
 </script>
   
-  
-  
-
 </div>

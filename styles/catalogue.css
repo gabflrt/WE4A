@@ -44,12 +44,13 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    margin-bottom: 20 rem;margin-bottom: 20 rem;
+    margin-bottom: 20 rem;
+    margin-bottom: 20 rem;
     z-index: 10;
     box-shadow: 3px 3px 5px #808080;
     border-radius: 10px;
     transition: opacity 0.3s;
-    width: 21,33rem;
+    width: 21, 33rem;
     height: 12rem;
 }
 
