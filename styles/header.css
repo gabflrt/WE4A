@@ -22,6 +22,7 @@ header img {
 .login {
     display: flex;
     align-items: center;
+    margin-right: 20px;
 }
 
 ul {
@@ -47,13 +48,19 @@ a {
 }
 
 .connection #formlogin {
+
     width: 17%;
+}
+
+#deco {
+    margin-right: 40px;
 }
 
 .submit {
     height: 30px;
     padding-left: 10%;
     padding-right: 10%;
+    margin-right: 10px;
     width: auto;
     border: 1px solid #ccc;
     box-shadow: 3px 3px 5px #808080;
@@ -68,4 +75,13 @@ a {
     to {
         transform: translateX(0);
     }
+}
+
+
+.welcome-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1.3rem;
 }

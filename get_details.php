@@ -15,14 +15,18 @@ $prix = $result['prix'];
 $chaud = $result['chaud'];   
 $image = $result['image']; 
 ?>
-<div class="plats">
-<div class="plat">
+<div class="presentation">
+<div class="contenu_plat">
     <h1><?=$nom?></h1>
+    <div class="image">
+    <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
+</div>
+    <div clas="behind">
     <h2 class="contenu">Description</h2>
     <p class="contenu"><?=$description?></p>
     <p class="contenu">Prix : <?=$prix?></p>
-    <p class="contenu">chaud : <?=$chaud?></p>  
-    <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
+    <p class="contenu">chaud : <?=$chaud?></p>
+    </div>  
     <input type="number" class="choix" value="1" min="1">
  
     <a href="#"> 

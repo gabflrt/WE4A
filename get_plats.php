@@ -57,11 +57,13 @@ while ($boucle < $NombrePlatsPage):
 
   <div class="plat">
     <h1><?=$nom?></h1>
-    <h2 class="contenu">Description</h2>
-    <p class="contenu"><?=$description?></p>
-    <p class="contenu">Prix : <?=$prix?></p>
-    <p class="contenu">chaud : <?=$chaud?></p>  
     <a href="#" onclick="loadDetails(<?=$plat?>)"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
+    <div class="behind">
+      <h2 class="contenu">Description</h2>
+      <p class="contenu"><?=$description?></p>
+      <p class="contenu">Prix : <?=$prix?></p>
+      <p class="contenu">chaud : <?=$chaud?></p> 
+    </div> 
   </div>
 <?php   
 

@@ -14,7 +14,6 @@
                 // Le compte existe
                 $hashmdp = $result['mdp'];
                 if(password_verify($mdp, $hashmdp)){
-                    echo "<p>Bonjour ".$result['prenom']." !</p>";
                     $_SESSION['mail'] = $result['mail'];
                     $_SESSION['prenom'] = $result['prenom'];
                     $_SESSION['nom'] = $result['nom'];

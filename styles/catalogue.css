@@ -19,7 +19,11 @@ h3 {
 
 .plats {
     display: flex;
+    margin-top: 7%;
+}
 
+#div1 {
+    margin-top: -5%;
 }
 
 .plat {
@@ -40,7 +44,6 @@ h1 {
 
 .plat img {
     display: block;
-    top: -5rem;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -60,7 +63,12 @@ h1 {
 }
 
 .navigation {
-    margin-top: 1.5%;
+    position: fixed;
+    bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .categories {
@@ -73,6 +81,10 @@ h1 {
     margin-right: auto;
 }
 
+.behind {
+    margin-top: -12rem;
+}
+
 .panier {
     /* Positionne le panier à droite et hors de la vue par défaut */
     position: fixed;
@@ -80,7 +92,7 @@ h1 {
     /* Assurez-vous que cela correspond à la largeur du panier */
     width: 300px;
     height: 100%;
-    background: #f8f9fa;
+    background: #fff;
     padding: 20px;
     box-sizing: border-box;
     transition: right 0.5s ease;
@@ -90,4 +102,76 @@ h1 {
 .panier.ouvert {
     /* Lorsque le panier est ouvert, il se déplace vers la gauche pour être visible */
     right: 0;
+}
+
+.presentation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.contenu_plat {
+    flex-basis: 60%;
+    margin: 5%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+}
+
+.contenu_plat img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    margin-bottom: 20 rem;
+    margin-bottom: 20 rem;
+    z-index: 10;
+    box-shadow: 3px 3px 5px #808080;
+    border-radius: 10px;
+    transition: opacity 0.3s;
+    width: 21, 33rem;
+    height: 24rem;
+}
+
+.contenu_plat img:hover {
+    opacity: 0.2;
+    cursor: pointer;
+}
+
+.contenu_plat h1,
+.contenu_plat h2 {
+    color: #333;
+}
+
+.contenu_plat p {
+    color: #666;
+}
+
+.choix {
+    display: block;
+    margin-top: 20px;
+}
+
+#ajouterAuPanier {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+
+.fermerPanier,
+.viderPanier,
+.commander {
+    display: block;
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
 }

@@ -9,15 +9,25 @@
                 <li><a href="#">Réserver une table</a></li>
             </ul>
         </nav>
+        <div class="welcome-message">
+        <?php
+        if(isset($_SESSION['prenom'])) {
+            echo "<p>Bonjour ".$_SESSION['prenom']." !</p>";
+        }
+        ?>
+        </div>
         <div class ="login">
              <!--Formulaire de connexion-->
         <?php 
         include './includes/database.php';
         global $db;
          if($_SESSION == true){
-            echo' <form method="post"> <br />
+            echo' <form method="post">
                 <input class="submit" type="submit" name="deco" id="deco" value="Se déconnecter">
-            </form>';
+            </form>
+            <a href="creation_compte.php">
+                <button type="submit" class="submit">Profil</button>
+                </a>';
          }else{
             echo '
             <button id="loginButton" class="submit">Connexion</button>
@@ -25,7 +35,10 @@
                 <input type="text" name="mail" id="mail" placeholder="E-Mail" required>
                 <input type="password" name="mdp" id="mdp" placeholder="Mot de passe" required>
                 <input type="submit" name="formlogin" id="formlogin" value="Connexion">
-            </form>';
+            </form>
+            <a href="./creation_compte.php"> 
+                <button type="submit" id="inscription" class="submit">Inscription</button>
+                </a>';
          }?>
         
         <br />
@@ -36,20 +49,6 @@
             include './includes/log.php';
         ?>
         
-        <!--Sinon autoriser possibilité de s'inscrire ou si connecté, de modifier son profil -->
-        <?php
-        
-         if($_SESSION == true){
-            echo '<a href="creation_compte.php">
-                <button type="submit" class="submit">Profil</button>
-                </a>';
-        }else{
-            echo '<a href="./creation_compte.php"> 
-                <button type="submit" id="inscription" class="submit">Inscription</button>
-                </a>';
-        }
-        
-        ?>
 
 <script>
 document.getElementById('loginButton').addEventListener('click', function() {
