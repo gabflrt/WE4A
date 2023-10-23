@@ -24,6 +24,14 @@ h3 {
     margin-right: 15%;
 }
 
+.platspetit {
+    display: flex;
+    margin-top: 4%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-bottom: 2.5%;
+}
+
 #div1 {
     margin-top: -5%;
 }

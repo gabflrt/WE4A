@@ -36,7 +36,7 @@ $boucle = 0;
 
 
 
-<div class="plats">
+<div class="platspetit">
 <?php
 while ($boucle < $NombrePlatsPage):
     if($boucle==$PlatsParPages/2){
