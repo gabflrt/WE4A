@@ -59,10 +59,11 @@ while ($boucle < $NombrePlatsPage):
     <h1><?=$nom?></h1>
     <a href="#" onclick="loadDetails(<?=$plat?>)"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
     <div class="behind">
-      <h2 class="contenu">Description</h2>
       <p class="contenu"><?=$description?></p>
-      <p class="contenu">Prix : <?=$prix?></p>
-      <p class="contenu">chaud : <?=$chaud?></p> 
+      <p class="contenu">Prix : <?=$prix?>€</p>
+      <?php if ($chaud == 1){?>
+        <img src="images/chaud.png" class ="contenu" alt="Chaud" width=3rem; height=3rem;>
+      <?php } ?>
     </div> 
   </div>
 <?php   

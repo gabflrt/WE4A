@@ -52,6 +52,11 @@ h1 {
     margin-left: 30%;
 }
 
+.contenu img {
+    width: 5rem;
+    height: 5rem;
+}
+
 .plat img {
     display: block;
     margin-left: auto;
@@ -63,9 +68,10 @@ h1 {
     box-shadow: 3px 3px 5px #808080;
     border-radius: 10px;
     transition: opacity 0.3s;
-    width: 21, 33rem;
+    width: 12rem;
     height: 12rem;
 }
+
 
 .plat img:hover {
     opacity: 0.2;
