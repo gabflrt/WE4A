@@ -62,8 +62,10 @@ while ($boucle < $NombrePlatsPage):
       <p class="contenu"><?=$description?></p>
       <p class="contenu">Prix : <?=$prix?>€</p>
       <?php if ($chaud == 1){?>
-        <img src="images/chaud.png" class ="contenu" alt="Chaud" width=3rem; height=3rem;>
-      <?php } ?>
+        <img src="images/chaud.png" id ="chaud" alt="Chaud";>
+      <?php }else{?>
+        <img src="images/froid.png" id ="chaud" alt="Froid";>
+      <?php }?>
     </div> 
   </div>
 <?php   
