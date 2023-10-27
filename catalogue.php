@@ -45,6 +45,40 @@ function loadDetails(plat) {
   });
 }
 
+function loadBoissons() {
+    $.get({
+      url: "get_boissons.php", 
+      data:{},
+      success: function(result){
+      $("#div1").html(result);
+    }
+});
+}
+
+function loadBoissonsPage(page) {
+    $.get({
+      url: "get_boissons.php", 
+      data:{
+        "page":page
+      },
+      success: function(result){
+      $("#div1").html(result);
+    }
+  });
+}
+
+function loadDetails2(boisson) {
+    $.get({
+      url: "get_details2.php", 
+      data:{
+        "boisson":boisson
+      },
+      success: function(result){
+      $("#div1").html(result);
+    }
+  });
+}
+
 
 </script>
 </head>
@@ -76,7 +110,7 @@ function loadDetails(plat) {
       </a>
     </td>
     <td>
-      <a href="#" onclick="loadPlatsType('boisson'); return false;">
+      <a href="#" onclick="loadBoissons(); return false;">
         <h3>Boissons</h3>
       </a>
     </td>
@@ -141,9 +175,25 @@ function loadDetails(plat) {
       <h1>Desserts</h1>
       <a href="#" onclick="loadPlatsType('dessert');"><img src = "data:image/png;base64,<?=base64_encode($result['image'])?>"/></a>
     </div>
+
+    
     <div class="plat"> 
+    <?php 
+    $CalculNombrePlats = $db->prepare("SELECT id_boisson FROM boissons");
+    $CalculNombrePlats->execute();
+    $plats = $CalculNombrePlats->fetchAll(PDO::FETCH_ASSOC);
+        
+    if (count($plats) > 0) {
+        $PlatAleatoire = $plats[array_rand($plats)]['id_boisson'];
+    
+        $PlatReq = $db->prepare("SELECT * FROM boissons WHERE id_boisson=:boisson");
+        $PlatReq->bindParam(':boisson', $PlatAleatoire);
+        $PlatReq->execute();
+        $result = $PlatReq->fetch();
+    }     
+    ?>
       <h1>Boissons</h1>
-      <a href="#" onclick="loadPlatsType('boisson');"><img src = "data:image/png;base64,<?=base64_encode($result['image'])?>"/></a>
+      <a href="#" onclick="loadBoissons();"><img src = "data:image/png;base64,<?=base64_encode($result['image'])?>"/></a>
     </div>
   </div>
 </div>
