@@ -70,7 +70,7 @@ h1 {
     transition: opacity 0.3s;
     width: 12rem;
     height: 12rem;
-    
+
 }
 
 
@@ -79,8 +79,8 @@ h1 {
     cursor: pointer;
 }
 
-#chaud{
-    width: 2rem; 
+#chaud {
+    width: 2rem;
     height: 2rem;
     z-index: 1;
     box-shadow: 0px 0px 0px #fff;
@@ -118,8 +118,8 @@ h1 {
 .panier {
     /* Positionne le panier à droite et hors de la vue par défaut */
     position: fixed;
+    top: 70px;
     right: -300px;
-    /* Assurez-vous que cela correspond à la largeur du panier */
     width: 300px;
     height: 100%;
     background: #fff;
@@ -199,7 +199,7 @@ h1 {
     transition: background-color 0.3s;
 }
 
-#ajouterAuPanier:hover{
+#ajouterAuPanier:hover {
     background-color: #555;
 }
 

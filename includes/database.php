@@ -1,7 +1,7 @@
 <?php
 
     define('HOST','localhost');
-    define('DB_NAME','we4a_macullo_fleuret');
+    define('DB_NAME','we4a_macullo_fleuret2');
     define('USER', 'root');
     define('PASS','');
 
