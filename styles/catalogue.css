@@ -199,7 +199,24 @@ h1 {
     transition: background-color 0.3s;
 }
 
+#afficherPanier {
+    display: block;
+    background-color: #333;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
 #ajouterAuPanier:hover {
+    background-color: #555;
+}
+
+.afficherPanier:hover{
     background-color: #555;
 }
 
@@ -217,7 +234,6 @@ h1 {
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-
 .fermerPanier:hover,
 .viderPanier:hover,
 .commander:hover {

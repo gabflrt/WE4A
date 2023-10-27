@@ -37,6 +37,9 @@ $image = $result['image'];
     <a href="#"> 
 <button type="submit" id="ajouterAuPanier" class="choix">Ajouter au panier</button>
 </a>
+<a href="#"> 
+<button type="submit" id="afficherPanier" class="choix">Afficher le panier</button>
+</a>
 </div>
 <div id="panier" class="panier">
 <h2>Panier</h2>
@@ -63,9 +66,16 @@ for (var i = 0; i < cookies.length; i++) {
     }
 }
 
+document.getElementById('afficherPanier').addEventListener('click',function() {
+    if (displayPanier()){
+        updatePanier();
+    }else{
+        closePanier();
+    }
+})
+
 document.getElementById('fermerPanier').addEventListener('click', function() {
-    var panier = document.getElementById('panier');
-    panier.classList.remove('ouvert');
+    closePanier();
 });
 
 document.getElementById('ajouterAuPanier').addEventListener('click', function() {
@@ -82,12 +92,31 @@ document.getElementById('ajouterAuPanier').addEventListener('click', function() 
     document.cookie = "panier=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
 
     // Mettez à jour l'affichage du panier.
-    var panierDiv = document.getElementById('panierContenu');
+    displayPanier();
+    updatePanier();
+});
 
+function displayPanier(){
+    var panierDiv = document.getElementById('panierContenu');
     var panier = document.getElementById('panier');
     if (!panier.classList.contains('ouvert')) {
-       
         panier.classList.add('ouvert');
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function closePanier(){ 
+    var panier = document.getElementById('panier');
+    if(panier.classList.contains('ouvert')){
+        panier.classList.remove('ouvert');
+    }
+}
+
+function updatePanier(){
+    var panierDiv = document.getElementById('panierContenu');
+    var panier = document.getElementById('panier');
         panierDiv.innerHTML = '';
         for (var i = 0; i < listpanier.length; i++) {
             // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
@@ -100,9 +129,8 @@ document.getElementById('ajouterAuPanier').addEventListener('click', function() 
                 }
             };
             xhr.send();
-        }
     }
-});
+}
 
 
 document.getElementById('viderPanier').addEventListener('click', function() {
