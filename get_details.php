@@ -109,6 +109,7 @@ document.getElementById('viderPanier').addEventListener('click', function() {
     listpanier = [];
     var panierDiv = document.getElementById('panierContenu');
     panierDiv.innerHTML = '<p>Le panier est vide.</p>';
+    document.cookie = "panier=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
 });
 
 document.getElementById('commander').addEventListener('click', function() {
