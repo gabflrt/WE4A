@@ -57,7 +57,7 @@ for (var i = 0; i < cookies.length; i++) {
         var productIdsString = cookie.substring('panier='.length, cookie.length);
         var productIds = JSON.parse(productIdsString);
         for (var j = 0; j < productIds.length; j++) {
-            var element = {id: productIds[j]};
+            var element = productIds[j];
             listpanier.push(element);
         }
     }
@@ -71,18 +71,15 @@ document.getElementById('fermerPanier').addEventListener('click', function() {
 document.getElementById('ajouterAuPanier').addEventListener('click', function() {
     var idproduit = <?php echo json_encode($id) ?>;
 
+
     // Créer une liste d'identifiants de produits
-    var productIds = [idproduit];
+    listpanier.push(idproduit);
 
     // Convertir la liste en chaîne pour le stockage dans un cookie
-    var productIdsString = JSON.stringify(productIds);
+    var productIdsString = JSON.stringify(listpanier);
 
     // Créer le cookie "panier"
     document.cookie = "panier=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
-    
-    var element = {id: idproduit};
-    
-    listpanier.push(element);
 
     // Mettez à jour l'affichage du panier.
     var panierDiv = document.getElementById('panierContenu');
@@ -95,7 +92,7 @@ document.getElementById('ajouterAuPanier').addEventListener('click', function() 
         for (var i = 0; i < listpanier.length; i++) {
             // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "get_produit.php?id=" + listpanier[i].id, true);
+            xhr.open("GET", "get_produit.php?id=" + listpanier[i], true);
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var product = JSON.parse(this.responseText);
