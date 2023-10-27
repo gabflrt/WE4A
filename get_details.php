@@ -21,11 +21,16 @@ $image = $result['image'];
     <div class="image">
     <img src = "data:image/png;base64,<?=base64_encode($image)?>"/>
 </div>
-    <div clas="behind">
+    <div class="behind2">
     <h2 class="contenu">Description</h2>
     <p class="contenu"><?=$description?></p>
-    <p class="contenu">Prix : <?=$prix?></p>
-    <p class="contenu">chaud : <?=$chaud?></p>
+    <p class="contenu">Prix : <?=$prix?>€</p>
+    <p class="contenu">Chaud : 
+    <?php if ($chaud == 1){?>
+        oui
+    <?php }else{?>
+        non
+    <?php }?></p>
     </div>  
     <input type="number" class="choix" value="1" min="1">
  

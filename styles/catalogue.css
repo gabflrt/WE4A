@@ -109,6 +109,12 @@ h1 {
     margin-top: -12rem;
 }
 
+.behind2 {
+    margin-top: -13rem;
+    margin-bottom: 8rem;
+    margin-left: 16rem;
+}
+
 .panier {
     /* Positionne le panier à droite et hors de la vue par défaut */
     position: fixed;
@@ -147,7 +153,8 @@ h1 {
 
 .contenu_plat img {
     display: inline-block;
-    margin-left: auto;
+    margin-left: 6rem;
+    margin-top: 2rem; 
     margin-right: auto;
     position: relative;
     margin-bottom: 20 rem;
