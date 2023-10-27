@@ -85,57 +85,65 @@ function loadDetails(plat) {
 
 <div id="div1">
   <div class="plats categories">
-    <div class="plat">
-      <?php 
-      $CalculNombrePlats = $db->prepare("SELECT * FROM plats WHERE type='entree'");
-      $CalculNombrePlats->execute();
-      $NombrePlats = $CalculNombrePlats->RowCount();
-      $PlatAleatoire = rand(1,$NombrePlats);
-      $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
-      $PlatReq->bindParam(':plat', $PlatAleatoire);
-      $PlatReq->execute();
-      $result = $PlatReq->fetch();  
-      $image = $result['image']; 
+  <div class="plat">
+    <?php 
+    $CalculNombrePlats = $db->prepare("SELECT id_plat FROM plats WHERE type='entree'");
+    $CalculNombrePlats->execute();
+    $plats = $CalculNombrePlats->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (count($plats) > 0) {
+        $PlatAleatoire = $plats[array_rand($plats)]['id_plat'];
+    
+        $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
+        $PlatReq->bindParam(':plat', $PlatAleatoire);
+        $PlatReq->execute();
+        $result = $PlatReq->fetch();
+    }     
     ?>
-      <h1>Entrées</h1>
-      <a href="#" onclick="loadPlatsType('entree');"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
-    </div>
+    <h1>Entrées</h1>
+    <a href="#" onclick="loadPlatsType('entree');"><img src="data:image/jpg;base64,<?=base64_encode($result['image'])?>"/></a>
+  </div>
     <div class="plat">
       <?php 
-      $CalculNombrePlats = $db->prepare("SELECT * FROM plats WHERE type='plat'");
-      $CalculNombrePlats->execute();
-      $NombrePlats = $CalculNombrePlats->RowCount();
-      $PlatAleatoire = rand(1,$NombrePlats);
-      $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
-      $PlatReq->bindParam(':plat', $PlatAleatoire);
-      $PlatReq->execute();
-      $result = $PlatReq->fetch(); 
-      $image = $result['image']; 
-    ?>  
+    $CalculNombrePlats = $db->prepare("SELECT id_plat FROM plats WHERE type='plat'");
+    $CalculNombrePlats->execute();
+    $plats = $CalculNombrePlats->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (count($plats) > 0) {
+        $PlatAleatoire = $plats[array_rand($plats)]['id_plat'];
+    
+        $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
+        $PlatReq->bindParam(':plat', $PlatAleatoire);
+        $PlatReq->execute();
+        $result = $PlatReq->fetch();
+    }         ?>  
       <h1>Plats</h1>
-      <a href="#" onclick="loadPlatsType('plat');"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
+      <a href="#" onclick="loadPlatsType('plat');"><img src = "data:image/png;base64,<?=base64_encode($result['image'])?>"/></a>
     </div>
   </div>
 
     <div class="plats">
       <div class="plat">
           <?php 
-      $CalculNombrePlats = $db->prepare("SELECT * FROM plats WHERE type='dessert'");
-      $CalculNombrePlats->execute();
-      $NombrePlats = $CalculNombrePlats->RowCount();
-      $PlatAleatoire = rand(1,$NombrePlats);
-      $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
-      $PlatReq->bindParam(':plat', $PlatAleatoire);
-      $PlatReq->execute();
-      $result = $PlatReq->fetch();
-      $image = $result['image']; 
+    $CalculNombrePlats = $db->prepare("SELECT id_plat FROM plats WHERE type='dessert'");
+    $CalculNombrePlats->execute();
+    $plats = $CalculNombrePlats->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (count($plats) > 0) {
+        $PlatAleatoire = $plats[array_rand($plats)]['id_plat'];
+    
+        $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
+        $PlatReq->bindParam(':plat', $PlatAleatoire);
+        $PlatReq->execute();
+        $result = $PlatReq->fetch();
+    }     
     ?>
       <h1>Desserts</h1>
-      <a href="#" onclick="loadPlatsType('dessert');"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
+      <a href="#" onclick="loadPlatsType('dessert');"><img src = "data:image/png;base64,<?=base64_encode($result['image'])?>"/></a>
     </div>
     <div class="plat"> 
       <h1>Boissons</h1>
-      <a href="#" onclick="loadPlatsType('boisson');"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
+      <a href="#" onclick="loadPlatsType('boisson');"><img src = "data:image/png;base64,<?=base64_encode($result['image'])?>"/></a>
     </div>
   </div>
 </div>
