@@ -45,6 +45,18 @@ $image = $result['image'];
 
 <script>
 var listpanier = [];
+var cookies = document.cookie.split(';');
+for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+    if (cookie.indexOf('panier=') === 0) {
+        var productIdsString = cookie.substring('panier='.length, cookie.length);
+        var productIds = JSON.parse(productIdsString);
+        for (var j = 0; j < productIds.length; j++) {
+            var element = {id: productIds[j]};
+            listpanier.push(element);
+        }
+    }
+}
 
 document.getElementById('fermerPanier').addEventListener('click', function() {
     var panier = document.getElementById('panier');
@@ -52,17 +64,18 @@ document.getElementById('fermerPanier').addEventListener('click', function() {
 });
 
 document.getElementById('ajouterAuPanier').addEventListener('click', function() {
-    var nomproduit = <?php echo json_encode($nom) ?>;
-    var prixproduit = <?php echo json_encode($prix); ?>;
-// Créer une liste d'identifiants de produits
-var productIds = [<?php echo json_encode($id) ?>,<?php echo json_encode($id) ?>];
+    var idproduit = <?php echo json_encode($id) ?>;
 
-// Convertir la liste en chaîne pour le stockage dans un cookie
-var productIdsString = JSON.stringify(productIds);
+    // Créer une liste d'identifiants de produits
+    var productIds = [idproduit];
 
-// Créer le cookie "panier"
-document.cookie = "panier=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
-    var element = {nom: nomproduit, prix: prixproduit};
+    // Convertir la liste en chaîne pour le stockage dans un cookie
+    var productIdsString = JSON.stringify(productIds);
+
+    // Créer le cookie "panier"
+    document.cookie = "panier=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
+    
+    var element = {id: idproduit};
     
     listpanier.push(element);
 
@@ -74,11 +87,21 @@ document.cookie = "panier=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:
        
         panier.classList.add('ouvert');
         panierDiv.innerHTML = '';
-    for (var i = 0; i < listpanier.length; i++) {
-        panierDiv.innerHTML += '<p>' + listpanier[i].nom + ': ' + listpanier[i].prix + '€</p>';
-    }
+        for (var i = 0; i < listpanier.length; i++) {
+            // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "get_produit.php?id=" + listpanier[i].id, true);
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var product = JSON.parse(this.responseText);
+                    panierDiv.innerHTML += '<p>' + product.nom + ': ' + product.prix + '€</p>';
+                }
+            };
+            xhr.send();
+        }
     }
 });
+
 
 document.getElementById('viderPanier').addEventListener('click', function() {
     listpanier = [];
