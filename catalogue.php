@@ -95,7 +95,10 @@ function loadDetails(plat) {
       $PlatReq->bindParam(':plat', $PlatAleatoire);
       $PlatReq->execute();
       $result = $PlatReq->fetch();  
-      $image = $result['image']; 
+      if ($result){
+        $image = $result['image']; 
+      }
+
     ?>
       <h1>Entrées</h1>
       <a href="#" onclick="loadPlatsType('entree');"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
@@ -110,10 +113,12 @@ function loadDetails(plat) {
       $PlatReq->bindParam(':plat', $PlatAleatoire);
       $PlatReq->execute();
       $result = $PlatReq->fetch(); 
-      $image = $result['image']; 
+      if ($result){
+        $image = $result['image']; 
+      }
     ?>  
       <h1>Plats</h1>
-      <a href="#" onclick="loadPlatsType('plat');"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
+      <a href="#" onclick="loadPlatsType('plat');"><img src = "data:image/png;base64,<?=base64_encode($result['image'])?>"/></a>
     </div>
   </div>
 
@@ -128,7 +133,9 @@ function loadDetails(plat) {
       $PlatReq->bindParam(':plat', $PlatAleatoire);
       $PlatReq->execute();
       $result = $PlatReq->fetch();
-      $image = $result['image']; 
+      if ($result){
+        $image = $result['image']; 
+      } 
     ?>
       <h1>Desserts</h1>
       <a href="#" onclick="loadPlatsType('dessert');"><img src = "data:image/png;base64,<?=base64_encode($image)?>"/></a>
