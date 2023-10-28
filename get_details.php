@@ -15,6 +15,7 @@ $prix = $result['prix'];
 $chaud = $result['chaud'];   
 $image = $result['image']; 
 ?>
+
 <div class="presentation">
 <div class="contenu_plat">
     <h1><?=$nom?></h1>
@@ -43,9 +44,12 @@ $image = $result['image'];
 </div>
 <div id="panier" class="panier">
 <h2>Panier</h2>
+
 <div id="panierContenu">
     <p>Le panier est vide.</p>
 </div>
+<br>
+<div id="prixTotalDiv">Prix total : </div>
 <button type="button" id="fermerPanier" class="fermerPanier">Fermer</button>
 <button type="button" id="viderPanier" class="viderPanier">Vider le panier</button>
 <button type="button" id="commander" class="commander">Commander</button>
@@ -65,6 +69,7 @@ for (var i = 0; i < cookies.length; i++) {
         }
     }
 }
+
 
 document.getElementById('afficherPanier').addEventListener('click',function() {
     if (displayPanier()){
@@ -117,7 +122,9 @@ function closePanier(){
 function updatePanier(){
     var panierDiv = document.getElementById('panierContenu');
     var panier = document.getElementById('panier');
+    var prixTotal = 0;
         panierDiv.innerHTML = '';
+        
         for (var i = 0; i < listpanier.length; i++) {
             // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
             var xhr = new XMLHttpRequest();
@@ -125,15 +132,24 @@ function updatePanier(){
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var product = JSON.parse(this.responseText);
+                    prixTotal += product.prix;
                     panierDiv.innerHTML += '<p>' + product.nom + ': ' + product.prix + '€</p>';
                 }
+                updatePrixTotal(prixTotal)
             };
             xhr.send();
     }
+    }
+
+function updatePrixTotal(prixTotal){
+    var prixTotalDiv = document.getElementById("prixTotalDiv");
+    prixTotalDiv.innerHTML = "Prix Total : " + prixTotal +  " €";
+
 }
 
 
 document.getElementById('viderPanier').addEventListener('click', function() {
+    updatePrixTotal(0);
     listpanier = [];
     var panierDiv = document.getElementById('panierContenu');
     panierDiv.innerHTML = '<p>Le panier est vide.</p>';
