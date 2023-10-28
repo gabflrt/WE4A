@@ -28,14 +28,7 @@
 
     </section>
 
-    <link rel="stylesheet" href="styles/carrousel.css">
-    <div class="carrousel">
-        <img src="images/plat1.jpg" alt="Image 1">
-        <img src="images/plat2.jpg" alt="Image 2">
-        <img src="images/plat3.jpg" alt="Image 3">
-        <img src="images/plat4.jpg" alt="Image 4" class="hidden">        
-    </div>
-    <script src="scripts/carrousel.js"></script>
+    <?php include("carroussel.php"); ?>
     
     <section class="presentation">
         <a href="./catalogue.php" class="bouton">Découvrir nos produits</a>
