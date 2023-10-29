@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./styles/accueil.css">
 
     <style>
-
         .command-container {
             border: 1px solid #ccc;
             padding: 10px;
@@ -26,8 +25,18 @@
     <title>Commandes précédentes</title>
 </head>
 
-<body>
+<?php
+session_start();
 
+if (!isset($_SESSION['mail'])) {
+    // Redirige vers la page d'accueil si l'utilisateur n'est pas connecté
+    header('Location: ./index.php');
+    exit;
+}
+?>
+
+
+<body>
     <?php include("./pagesParts/header.php"); ?>
     <div class="content">
 
