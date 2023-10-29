@@ -23,8 +23,24 @@ if (!isset($_SESSION['mail'])) {
 
     <?php include("./pagesParts/header.php"); ?>
 <div class="content">
-    <h1>Vos commandes précédentes</h1>
-    <p>Voici toutes les commandes que vous avez passé sur notre site.</p>
+
+<?php
+    //si connecté en tant que client
+    if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0){
+        echo "<h1>Vos commandes précédentes</h1>";
+        echo "<p>Voici les commandes que vous avez passées sur notre site.</p>";
+    }
+?>
+
+<?php
+    //si connecté en tant que admin
+    if (isset($_SESSION['admin']) && $_SESSION["admin"] == 1){
+        echo "<h1>Inventaire des commandes</h1>";
+        echo "<p>L'ensemble des commandes du site</p>";
+    }
+                         
+?>
+
 </div>
     <?php include("./pagesParts/footer.php"); ?>
 

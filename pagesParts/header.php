@@ -6,13 +6,18 @@
                 <a href="./index.php"><img src="images/logo.png" alt="Logo"></a>
                 <li><a href="./index.php">Accueil</a></li>
                 <li><a href="./catalogue.php">La Carte</a></li>
-                <li><a href="#">Réserver une table</a></li>
+                <li><a href="./commandes_precedentes.php">Commandes précédentes</a></li>
             </ul>
         </nav>
         <div class="welcome-message">
         <?php
         if(isset($_SESSION['prenom'])) {
             echo "<p>Bonjour ".$_SESSION['prenom']." !</p>";
+            if ($_SESSION['admin'] == 0){
+                echo  "<p> Compte : client</p>";
+            }else if ($_SESSION["admin"] == 1){
+                echo  "<p> Compte : admin</p>";
+            }
         }
         ?>
         </div>
