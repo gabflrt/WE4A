@@ -37,6 +37,39 @@ if (!isset($_SESSION['mail'])) {
     if (isset($_SESSION['admin']) && $_SESSION["admin"] == 1){
         echo "<h1>Inventaire des commandes</h1>";
         echo "<p>L'ensemble des commandes du site</p>";
+        echo "<br>";
+        
+        include 'get_commandes.php'; 
+        
+        foreach ($Commands as $command) {
+        // Écrit les informations d'un client et le commandId
+        echo "<p>Numéro commande : ". $command['id_commande'] ."</p>";
+        echo "<p>Client : " . $command['clientInfo']['nom'] . " " . $command['clientInfo']['prenom'] . "</p>";
+        echo "<p>Date commande : ". $command['date_heure'] ."</p>";
+        echo "</p>";
+        
+
+        //write the name and price of each "plats". 
+        $prixTotal=0;
+        echo "<p>Détails commande : <br>";
+        foreach ($command['commandInfo'] as $commandInfo) {
+            $platId = $commandInfo['id_plat'];
+
+            // Retrieve "plats" information based on $platId
+            $PlatInfoQuery = $db->prepare("SELECT nom, prix FROM plats WHERE id_plat = :platId");
+            $PlatInfoQuery->bindParam(':platId', $platId);
+            $PlatInfoQuery->execute();
+            $platInfo = $PlatInfoQuery->fetch();
+            $prixTotal+= $platInfo['prix'];
+            echo $platInfo['nom'] . " - " . $platInfo['prix']. "€ <br>";
+        }
+        echo "<p>Prix total : ". $prixTotal . "€</p>";
+
+        echo "<br>";
+        }
+        
+
+
     }
                          
 ?>
