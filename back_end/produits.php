@@ -65,17 +65,23 @@ foreach ($products as $product) {
     var newName = prompt("Entrez le nouveau nom du produit :");
     if (newName) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "rename_product.php", true);
+        xhr.open("POST", "../includes/rename_product.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                alert("Le produit a été renommé avec succès !");
-                location.reload(); // Rechargez la page pour voir les changements
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    alert("Le produit a été renommé avec succès !");
+                    location.reload(); // Rechargez la page pour voir les changements
+                } else {
+                    alert("Erreur lors du renommage du produit : " + this.responseText);
+                }
             }
         };
         xhr.send("id=" + id + "&name=" + newName);
+        console.log("id=" + id + "&name=" + newName);
     }
 }
+
 
 function editProduct(id) {
     // Ici, vous pouvez demander à l'utilisateur les nouvelles valeurs pour les autres champs du produit
@@ -99,7 +105,7 @@ function deleteProduct(id) {
     var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce produit ?");
     if (confirmation) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "delete_product.php", true);
+        xhr.open("POST", "../includes/delete_product.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
