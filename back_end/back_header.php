@@ -23,7 +23,7 @@
             <form method="post" class="connection"> 
                 <input type="text" name="mail" id="mail" placeholder="E-Mail" required>
                 <input type="password" name="mdp" id="mdp" placeholder="Mot de passe" required>
-                <input type="submit" name="formlogin" id="formlogin" value="Connection">
+                <input type="submit" name="formlogin" id="formlogin" value="Connexion">
             </form>';
          }?>
         
