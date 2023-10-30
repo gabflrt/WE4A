@@ -42,10 +42,10 @@
     <div class="infos">
         <div class="horaires-ouverture">            
             <h2>Horaires d'ouverture <span id="cercle" style="background-color: red;"></span></h2>  
-            <p>Lundi : Fermé</p>
-            <p>Mardi - Vendredi : 12h00 - 22h00</p>
-            <p>Samedi : 12h00 - 23h00</p>
-            <p>Dimanche : 12h00 - 15h00</p>
+            <p>Lundi - Vendredi : 12h00 - 23h00 </p>
+            <p>Samedi : 12h00 - 23h00 </p>
+            <p>Dimanche : 12h00 - 23h00 </p>
+                   
         </div>
         <script src="scripts/ouverture.js"></script>
         
