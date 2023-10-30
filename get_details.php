@@ -132,7 +132,7 @@ function updatePanier(){
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var product = JSON.parse(this.responseText);
-                    prixTotal += product.prix;
+                    prixTotal = parseInt(prixTotal) + parseInt(product.prix);
                     panierDiv.innerHTML += '<p>' + product.nom + ': ' + product.prix + '€</p>';
                 }
                 updatePrixTotal(prixTotal)
