@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php session_start(); 
+// Vérifie si l'utilisateur est un admin
+if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+    // Redirige vers la page d'accueil du back end si l'utilisateur est un admin
+    header('Location: ./back_end/accueil.php');
+    exit;
+}
+
+?>
 <link rel="stylesheet" href="styles/header.css">
     <header>
         <nav>

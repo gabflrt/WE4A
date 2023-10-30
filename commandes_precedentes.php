@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,19 +23,8 @@
     </style>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Commandes précédentes</title>
+    <title>dentes</title>
 </head>
-
-<?php
-session_start();
-
-if (!isset($_SESSION['mail'])) {
-    // Redirige vers la page d'accueil si l'utilisateur n'est pas connecté
-    header('Location: ./index.php');
-    exit;
-}
-?>
-
 
 <body>
     <?php include("./pagesParts/header.php"); ?>
@@ -48,64 +38,6 @@ if (!isset($_SESSION['mail'])) {
                 echo "<br>";
             }
         ?>
-
-        <?php
-            //si connecté en tant que admin
-            if (isset($_SESSION['admin']) && $_SESSION["admin"] == 1){
-                
-                echo "<h1>Inventaire des commandes</h1>";
-                echo "<p>L'ensemble des commandes du site</p>";
-                echo "<br>";
-                $chiffreAffaire=0;
-                $currentYear = date('Y'); 
-                $currentMonth = date('m'); 
-                $targetDate = $currentYear . '-' . $currentMonth . '-01';
-
-                echo "<p id=chiffreAffaireDiv>Chiffre d'affaire depuis le ".$targetDate.": ".$chiffreAffaire." </p>";
-
-                include 'get_commandes.php'; 
-
-                foreach ($Commands as $command) {
-                    // Wrap each command in a styled container
-                    echo '<div class="command-container">';
-
-                    // Écrit les informations d'un client et le commandId
-                    echo '<p class="info-row"><strong>Numéro commande :</strong> '. $command['id_commande'] .'</p>';
-                    echo '<p class="info-row"><strong>Client :</strong> ' . $command['clientInfo']['nom'] . ' ' . $command['clientInfo']['prenom'] . '</p>';
-                    echo '<p class="info-row"><strong>Date commande : </strong>'. $command['date_heure'] .'</p>';
-
-                    $prixTotal=0;
-                    echo '<p class="info-row"><strong>Détails commande</strong></p>';
-                    foreach ($command['commandInfo'] as $commandInfo) {
-                        $platId = $commandInfo['id_plat'];
-
-                        $PlatInfoQuery = $db->prepare("SELECT nom, prix FROM plats WHERE id_plat = :platId");
-                        $PlatInfoQuery->bindParam(':platId', $platId);
-                        $PlatInfoQuery->execute();
-                        $platInfo = $PlatInfoQuery->fetch();
-                        $prixTotal+= $platInfo['prix'];
-                        echo '<p class="info-row">' . $platInfo['nom'] . ' - ' . $platInfo['prix']. '€</p>';
-                    }
-                    echo '<p class="info-row">Prix total : '. $prixTotal . '€</p>';
-                    
-                    $dateCommand= date("Y-m-d", strtotime($command['date_heure']));
-                    $dateCommandStamp = strtotime($dateCommand);
-                    $targetDateStamp = strtotime($targetDate);
-                    if ($dateCommandStamp>$targetDateStamp){
-                        $chiffreAffaire+=$prixTotal;
-                        echo '<script>
-                        var chiffreAffaireDiv = document.getElementById("chiffreAffaireDiv");
-                        chiffreAffaireDiv.innerHTML = "Chiffre d\'affaire depuis le ' . $targetDate . ': ' . $chiffreAffaire . '€";
-                    </script>';
-                    }
-                    echo '</div>'; 
-                }
-            }
-            
-        ?>
-
-    </div>
     <?php include("./pagesParts/footer.php"); ?>
-
+    </div>
 </body>
-</html>
