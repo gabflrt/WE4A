@@ -45,15 +45,23 @@ if (!isset($_SESSION['mail'])) {
             if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0){
                 echo "<h1>Vos commandes précédentes</h1>";
                 echo "<p>Voici les commandes que vous avez passées sur notre site.</p>";
+                echo "<br>";
             }
         ?>
 
         <?php
             //si connecté en tant que admin
             if (isset($_SESSION['admin']) && $_SESSION["admin"] == 1){
+                
                 echo "<h1>Inventaire des commandes</h1>";
                 echo "<p>L'ensemble des commandes du site</p>";
                 echo "<br>";
+                $chiffreAffaire=0;
+                $currentYear = date('Y'); 
+                $currentMonth = date('m'); 
+                $targetDate = $currentYear . '-' . $currentMonth . '-01';
+
+                echo "<p id=chiffreAffaireDiv>Chiffre d'affaire depuis le ".$targetDate.": ".$chiffreAffaire." </p>";
 
                 include 'get_commandes.php'; 
 
@@ -79,10 +87,21 @@ if (!isset($_SESSION['mail'])) {
                         echo '<p class="info-row">' . $platInfo['nom'] . ' - ' . $platInfo['prix']. '€</p>';
                     }
                     echo '<p class="info-row">Prix total : '. $prixTotal . '€</p>';
-
+                    
+                    $dateCommand= date("Y-m-d", strtotime($command['date_heure']));
+                    $dateCommandStamp = strtotime($dateCommand);
+                    $targetDateStamp = strtotime($targetDate);
+                    if ($dateCommandStamp>$targetDateStamp){
+                        $chiffreAffaire+=$prixTotal;
+                        echo '<script>
+                        var chiffreAffaireDiv = document.getElementById("chiffreAffaireDiv");
+                        chiffreAffaireDiv.innerHTML = "Chiffre d\'affaire depuis le ' . $targetDate . ': ' . $chiffreAffaire . '€";
+                    </script>';
+                    }
                     echo '</div>'; 
                 }
             }
+            
         ?>
 
     </div>
