@@ -3,7 +3,7 @@
 
 // $CommandsPerPage = 5; // nombre de commandes par page
 
-$CommandsQuery = $db->prepare("SELECT * FROM commandes");
+$CommandsQuery = $db->prepare("SELECT * FROM commandes ORDER BY date_heure DESC");
 $CommandsQuery->execute();
 $Commands = $CommandsQuery->fetchAll();
 
