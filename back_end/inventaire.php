@@ -76,7 +76,7 @@ if ($_SESSION['admin'] == 0) {
                     echo '<div class="command-container">';
 
                     // Écrit les informations d'un client et le commandId
-                    echo '<button class="delete-button" onclick="confirmDelete(' . $command['id_commande'] . ')">Delete</button>';
+                    echo '<button class="delete-button" onclick="confirmDelete(' . $command['id_commande'] . ')">Supprimer</button>';
                     echo '<p class="info-row"><strong>Numéro commande :</strong> '. $command['id_commande'] .'</p>';
                     echo '<p class="info-row"><strong>Client :</strong> ' . $command['clientInfo']['nom'] . ' ' . $command['clientInfo']['prenom'] . '</p>';
                     echo '<p class="info-row"><strong>Date commande : </strong>'. $command['date_heure'] .'</p>';
