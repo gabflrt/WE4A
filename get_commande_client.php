@@ -1,12 +1,23 @@
 <?php
 
-$CommandsQuery = $db->prepare("SELECT * FROM commandes ORDER BY date_heure DESC");
+if (isset($_SESSION['mail'])){
+
+$userEmail = $_SESSION['mail'];
+$clientQuery = $db->prepare("SELECT id_client FROM clients WHERE mail = :mail");
+ $clientQuery->bindParam(':mail', $userEmail);
+ $clientQuery->execute();
+ $clientResult = $clientQuery->fetch(PDO::FETCH_ASSOC);
+ if ($clientResult) {
+     $clientId = $clientResult['id_client'];
+ }
+
+$CommandsQuery = $db->prepare("SELECT * FROM commandes WHERE id_client= :clientId ORDER BY date_heure DESC");
+$CommandsQuery->bindParam(':clientId', $clientId);
 $CommandsQuery->execute();
 $Commands = $CommandsQuery->fetchAll();
 
 foreach ($Commands as &$command) {
     $commandId = $command['id_commande'];
-    $clientId = $command['id_client'];
 
     // récupère les commandes
     $CommandInfoQuery = $db->prepare("SELECT * FROM commandes_plat WHERE id_commande = :commandId");
@@ -22,4 +33,7 @@ foreach ($Commands as &$command) {
     $clientInfo = $ClientInfoQuery->fetch();
     $command['clientInfo'] = $clientInfo;
 }
+}
 ?>
+
+

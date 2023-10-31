@@ -160,11 +160,17 @@ document.getElementById('commander').addEventListener('click', function() {
 
     if (listpanier.length >0){
         if (confirm("Voulez-vous commander ces produits ?")) {
-            createCommande();
-            var panierDiv = document.getElementById('panierContenu');
-            panierDiv.innerHTML = '<p>Commande effectuée.</p>';
-            listpanier = [];
-            window.location.href = "./commandes_precedentes.php";
+            createCommande().then(function(response) {
+                var panierDiv = document.getElementById('panierContenu');
+                panierDiv.innerHTML = '<p>Commande effectuée.</p>';
+                listpanier = [];
+
+                window.location.href = "./commandes_precedentes.php";
+            }).catch(function(error) {
+                alert("Erreur lors de la création de la commande ");
+            });
+
+
         }
     }else{
         alert("Vous n'avez aucun produit dans votre panier !")
@@ -175,6 +181,7 @@ document.getElementById('commander').addEventListener('click', function() {
 
 
 function createCommande(){
+    return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "create_commande.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -184,13 +191,15 @@ function createCommande(){
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 var response = xhr.responseText;
+                resolve(response);
             } else {
-                alert("Error: " + xhr.status);
+                reject("Error: " + xhr.status);
             }
         }
     };
 
     xhr.send(params);
+});
 
 }
 </script>

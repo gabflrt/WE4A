@@ -25,6 +25,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
+
+
 <body>
     <?php include("./pagesParts/header.php"); ?>
     <div class="content">
@@ -35,7 +37,36 @@
                 echo "<h1>Vos commandes précédentes</h1>";
                 echo "<p>Voici les commandes que vous avez passées sur notre site.</p>";
                 echo "<br>";
-            }
+
+                include "get_commande_client.php";
+                foreach ($Commands as $command) {
+                    // Wrap each command in a styled container
+                    echo '<div class="command-container">';
+
+                    // Écrit les informations d'un client et le commandId
+                    echo '<p class="info-row"><strong>Numéro commande :</strong> '. $command['id_commande'] .'</p>';
+                    echo '<p class="info-row"><strong>Client :</strong> ' . $command['clientInfo']['nom'] . ' ' . $command['clientInfo']['prenom'] . '</p>';
+                    echo '<p class="info-row"><strong>Date commande : </strong>'. $command['date_heure'] .'</p>';
+
+                    $prixTotal=0;
+                    echo '<p class="info-row"><strong>Détails commande</strong></p>';
+                    foreach ($command['commandInfo'] as $commandInfo) {
+                        $platId = $commandInfo['id_plat'];
+
+                        $PlatInfoQuery = $db->prepare("SELECT nom, prix FROM plats WHERE id_plat = :platId");
+                        $PlatInfoQuery->bindParam(':platId', $platId);
+                        $PlatInfoQuery->execute();
+                        $platInfo = $PlatInfoQuery->fetch();
+                        $prixTotal+= $platInfo['prix'];
+                        echo '<p class="info-row">' . $platInfo['nom'] . ' - ' . $platInfo['prix']. '€</p>';
+                    }
+
+                    echo '<p class="info-row">Prix total : '. $prixTotal . '€</p>';
+                    
+                    echo '</div>'; 
+                    }
+                }
+            
         ?>
     <?php include("./pagesParts/footer.php"); ?>
     </div>
