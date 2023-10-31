@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
+    margin-top: 100px;
     padding: 0;
 }
 
@@ -44,4 +44,19 @@ button {
 
 button:hover {
     background-color: #444;
+}
+
+#main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+}
+
+#product {
+    margin-bottom: 20px;
 }

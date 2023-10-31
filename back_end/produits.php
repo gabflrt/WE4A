@@ -28,44 +28,67 @@ if ($_SESSION['admin'] == 0) {
 <body>
 
     <?php include("./back_header.php"); ?>
-    
+    <div id="main">
+    <div id="content">
+        <h1>Gestion des Plats</h1>
     <?php
 
-// Obtenez le numéro de page à partir de la requête GET, ou utilisez 1 par défaut
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-// Définissez combien de produits vous voulez afficher par page
-$productsPerPage = 20;
-
-// Calculez l'offset pour la requête SQL
-$offset = ($page - 1) * $productsPerPage;
-
 // Préparez et exécutez la requête SQL pour obtenir les produits
-$stmt = $db->prepare("SELECT * FROM plats ORDER BY nom LIMIT :offset, :limit");
-$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-$stmt->bindParam(':limit', $productsPerPage, PDO::PARAM_INT);
-$stmt->execute();
+$q_plats = $db->prepare("SELECT * FROM plats ORDER BY nom");
+$q_plats->execute();
 
 // Récupérez les produits
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$plats = $q_plats->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($products as $product) {
+foreach ($plats as $plat) {
     // Affichez chaque produit avec les boutons Renommer, Modifier et Effacer
-    echo '<div class="product">';
-    echo '<h2>' . htmlspecialchars($product['nom']) . '</h2>';
-    echo '<p>Prix: ' . htmlspecialchars($product['prix']) . '€</p>';
-    echo '<button onclick="renameProduct(' . $product['id_plat'] . ')">Renommer</button>';
-    echo '<button onclick="editProduct(' . $product['id_plat'] . ')">Modifier</button>';
-    echo '<button onclick="deleteProduct(' . $product['id_plat'] . ')">Effacer</button>';
+    echo '<div id="product">';
+    echo '<h2>' . htmlspecialchars($plat['nom']) . '</h2>';
+    echo '<p>Prix: ' . htmlspecialchars($plat['prix']) . '€</p>';
+    echo '<button onclick="renamePlat(' . $plat['id_plat'] . ')">Renommer</button>';
+    echo '<button onclick="loadModifsPlat(' . $plat['id_plat'] . ')">Modifier</button>';
+    echo '<button onclick="deletePlat(' . $plat['id_plat'] . ')">Effacer</button>';
     echo '</div>';
 }
 ?>
+</div>
+<div>
+    <a><button onclick="loadAjoutPlat()">Ajouter un plat</button></a>
+    <a><button onclick="loadAjoutBoisson()">Ajouter une boisson</button></a>
+<div id="modif">
+
+</div>
+</div>
+<div id="content">
+        <h1>Gestion des boissons</h1>
+    <?php
+
+// Préparez et exécutez la requête SQL pour obtenir les produits
+$q_boissons = $db->prepare("SELECT * FROM boissons ORDER BY nom");
+$q_boissons->execute();
+
+// Récupérez les produits
+$boissons = $q_boissons->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($boissons as $boisson) {
+    // Affichez chaque produit avec les boutons Renommer, Modifier et Effacer
+    echo '<div id="product">';
+    echo '<h2>' . htmlspecialchars($boisson['nom']) . '</h2>';
+    echo '<p>Prix: ' . htmlspecialchars($boisson['prix']) . '€</p>';
+    echo '<button onclick="renameBoisson(' . $boisson['id_boisson'] . ')">Renommer</button>';
+    echo '<button onclick="loadModifsBoisson(' . $boisson['id_boisson'] . ')">Modifier</button>';
+    echo '<button onclick="deleteBoisson(' . $boisson['id_boisson'] . ')">Effacer</button>';
+    echo '</div>';
+}
+?>
+</div>
+</div>
 <script>
-    function renameProduct(id) {
+    function renamePlat(id) {
     var newName = prompt("Entrez le nouveau nom du produit :");
     if (newName) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../includes/rename_product.php", true);
+        xhr.open("POST", "../includes/rename_plat.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
             if (this.readyState == 4) {
@@ -82,30 +105,90 @@ foreach ($products as $product) {
     }
 }
 
-
-function editProduct(id) {
-    // Ici, vous pouvez demander à l'utilisateur les nouvelles valeurs pour les autres champs du produit
-    // Pour cet exemple, je vais juste changer le nom
+function renameBoisson(id) {
     var newName = prompt("Entrez le nouveau nom du produit :");
     if (newName) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "edit_product.php", true);
+        xhr.open("POST", "../includes/rename_boisson.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                alert("Le produit a été modifié avec succès !");
-                location.reload(); // Rechargez la page pour voir les changements
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    alert("Le produit a été renommé avec succès !");
+                    location.reload(); // Rechargez la page pour voir les changements
+                } else {
+                    alert("Erreur lors du renommage du produit : " + this.responseText);
+                }
             }
         };
         xhr.send("id=" + id + "&name=" + newName);
+        console.log("id=" + id + "&name=" + newName);
     }
 }
 
-function deleteProduct(id) {
+function loadModifsPlat(plat) {
+    $.get({
+      url: "./get_modif_plat.php", 
+      data:{
+        "plat":plat
+      },
+      success: function(result){
+      $("#modif").html(result);
+    }
+  });
+}
+
+function loadModifsBoisson(boisson) {
+    $.get({
+      url: "./get_modif_boisson.php", 
+      data:{
+        "boisson":boisson
+      },
+      success: function(result){
+      $("#modif").html(result);
+    }
+  });
+}
+
+function loadAjoutPlat() {
+    $.get({
+      url: "./get_ajout_plat.php", 
+      success: function(result){
+      $("#modif").html(result);
+    }
+  });
+}
+
+function loadAjoutBoisson() {
+    $.get({
+      url: "./get_ajout_boisson.php", 
+      success: function(result){
+      $("#modif").html(result);
+    }
+  });
+}
+
+function deletePlat(id) {
     var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce produit ?");
     if (confirmation) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../includes/delete_product.php", true);
+        xhr.open("POST", "../includes/delete_plat.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                alert("Le produit a été supprimé avec succès !");
+                location.reload(); // Rechargez la page pour voir les changements
+            }
+        };
+        xhr.send("id=" + id);
+    }
+}
+
+function deleteBoisson(id) {
+    var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce produit ?");
+    if (confirmation) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "../includes/delete_boisson.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
