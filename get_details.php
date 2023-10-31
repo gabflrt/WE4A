@@ -157,12 +157,42 @@ document.getElementById('viderPanier').addEventListener('click', function() {
 });
 
 document.getElementById('commander').addEventListener('click', function() {
-    var panierDiv = document.getElementById('panierContenu');
-    panierDiv.innerHTML = '<p>Commande effectuée.</p>';
-    listpanier = [];
-    window.location.href = "./panier.php";
+
+    if (listpanier.length >0){
+        if (confirm("Voulez-vous commander ces produits ?")) {
+            createCommande();
+            var panierDiv = document.getElementById('panierContenu');
+            panierDiv.innerHTML = '<p>Commande effectuée.</p>';
+            listpanier = [];
+            window.location.href = "./commandes_precedentes.php";
+        }
+    }else{
+        alert("Vous n'avez aucun produit dans votre panier !")
+    }
+
     
 });
+
+
+function createCommande(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "create_commande.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var listPanierJSON = JSON.stringify(listpanier);
+    var params = "listPanier=" + listPanierJSON;
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var response = xhr.responseText;
+            } else {
+                alert("Error: " + xhr.status);
+            }
+        }
+    };
+
+    xhr.send(params);
+
+}
 </script>
   
 </div>
