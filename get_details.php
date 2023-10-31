@@ -157,16 +157,19 @@ document.getElementById('viderPanier').addEventListener('click', function() {
 });
 
 document.getElementById('commander').addEventListener('click', function() {
+
     if (listpanier.length >0){
+        if (confirm("Voulez-vous commander ces produits ?")) {
             createCommande();
             var panierDiv = document.getElementById('panierContenu');
             panierDiv.innerHTML = '<p>Commande effectuée.</p>';
             listpanier = [];
             window.location.href = "./commandes_precedentes.php";
-
+        }
     }else{
         alert("Vous n'avez aucun produit dans votre panier !")
     }
+
     
 });
 
@@ -181,10 +184,8 @@ function createCommande(){
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 var response = xhr.responseText;
-                isSuccess=true;
             } else {
                 alert("Error: " + xhr.status);
-                isSuccess=false;
             }
         }
     };

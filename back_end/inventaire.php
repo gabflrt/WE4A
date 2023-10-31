@@ -39,7 +39,7 @@ if ($_SESSION['admin'] == 0) {
     </style>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>dentes</title>
+
 </head>
 
 <body>
@@ -117,12 +117,21 @@ if ($_SESSION['admin'] == 0) {
 
     <script>
         function confirmDelete(commandId) {
-            if (confirm("Are you sure you want to delete this command?")) {
-                // User confirmed, perform the deletion here
-                // You can make an AJAX request or navigate to a delete endpoint
-                // You may want to update the UI to reflect the deletion
+            if (confirm("Voulez-vous vraiment supprimer cette commande ?")) {
+                $.ajax({
+            type: 'POST',
+            url: '../delete_commande.php',
+            data: { commandId: commandId },
+            success: function (response) {
+               $('#command_' + commandId).remove();
+               window.location.reload()
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
             }
-            // If the user cancels, no action is taken
+        });
+            }
+
         }
     </script>
 
