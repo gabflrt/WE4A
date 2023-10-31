@@ -52,12 +52,15 @@ foreach ($plats as $plat) {
 }
 ?>
 </div>
-<div>
-    <a><button onclick="loadAjoutPlat()">Ajouter un plat</button></a>
-    <a><button onclick="loadAjoutBoisson()">Ajouter une boisson</button></a>
-<div id="modif">
+<div id="center">
+    <div id="add">
+        <a><button onclick="loadAjoutPlat()">Ajouter un plat</button></a>
+        <a><button onclick="loadAjoutBoisson()">Ajouter une boisson</button></a>
+        </div> 
+    <div id="modif">
 
-</div>
+
+    </div>
 </div>
 <div id="content">
         <h1>Gestion des boissons</h1>
