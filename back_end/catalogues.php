@@ -40,7 +40,8 @@ if ($_SESSION['admin'] == 0) {
                 echo $type2['type'], "\n";
             }
         ?>
-    </div>
+        <br>
+        <br>
         
 
         <h1>Ajout d'un nouveau type</h1>
@@ -64,6 +65,7 @@ if ($_SESSION['admin'] == 0) {
         </form>
         </div>
         </div>
+    </div>
     
 
 <?php include("./back_footer.php"); ?>
