@@ -2,10 +2,11 @@
 
 include './database.php';
 
-if(isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['prix'])) {
+if(isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['type']) && isset($_POST['prix'])) {
     $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
     $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
     $prix = filter_input(INPUT_POST, 'prix', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
     $chaud = isset($_POST['chaud']) ? 1 : 0;
 
     // Vérifier si une image a été téléchargée
@@ -18,10 +19,11 @@ if(isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['prix'])
     }
 
     // Insérer un nouveau plat dans la base de données
-    $insertPlatReq = $db->prepare("INSERT INTO plats (nom, description, prix, chaud, image) VALUES (:nom, :description, :prix, :chaud, :image)");
+    $insertPlatReq = $db->prepare("INSERT INTO plats (nom, description, prix, type, chaud, image) VALUES (:nom, :description, :prix, :type, :chaud, :image)");
     $insertPlatReq->bindParam(':nom', $nom);
     $insertPlatReq->bindParam(':description', $description);
     $insertPlatReq->bindParam(':prix', $prix);
+    $insertPlatReq->bindParam(':type', $type);
     $insertPlatReq->bindParam(':chaud', $chaud);
     $insertPlatReq->bindParam(':image', $image);
     $insertPlatReq->execute();
