@@ -71,7 +71,7 @@ if ($_SESSION['admin'] == 0) {
             echo '<div class="type-box">';
             echo '<h3 class="type-name">'.$type.'</h3> <br> <p>' . $count . ' produits </p><br>';
             echo '<button class="btn_rename" onClick="renameCatalog(this)">Renommer</button>'; 
-            echo '<button class="btn_delete" onClick="deleteCatalog(this)">Supprimer</button>';            
+            echo '<button class="btn_delete" onClick="deleteTypeInDatabase(this)">Supprimer</button>';            
             echo '</div>';
         }
         
@@ -99,7 +99,8 @@ if ($_SESSION['admin'] == 0) {
                 var newName = inputField.value.trim();
                 if (newName !== '') {
                     typeHeader.innerText = newName;
-                    //AJAX call ici et update en BDD
+                    //AJAX call here to update the name of type in the DB                
+                    updateTypeInDatabase(currentName, newName);
                 } else {
                     typeHeader.innerText = currentName;
                 } 
@@ -113,13 +114,39 @@ if ($_SESSION['admin'] == 0) {
         }
     }
 
-    function deleteCatalog(button) {
+    function updateTypeInDatabase(oldName, newName) {
+        // Make an AJAX call to update the name of the type in the DB
+        $.ajax({
+            type: 'POST',
+            url: 'updateType.php', // Change this to the actual file handling the update
+            data: { oldName: oldName, newName: newName },
+            success: function(response) {
+                console.log(response); // Log the response from the server
+            },
+            error: function(error) {
+                console.error(error); // Log any errors
+            }
+        });
+    }
+
+    function deleteTypeInDatabase(button, typeToDelete) {
+        // Make an AJAX call to delete the type in the DB
         var typeBox = button.parentNode;
         var typeToDelete = typeBox.querySelector('.type-name').innerText;
 
         if (confirm('Voulez-vous vraiment supprimer le type suivant :  ' + typeToDelete + '?')) {
-            typeBox.remove();
-            //AJAX call ici et supprimer en BDD
+            typeBox.remove();            
+            $.ajax({
+                type: 'POST',
+                url: 'deleteType.php', // Change this to the actual file handling the delete
+                data: { typeToDelete: typeToDelete },
+                success: function(response) {
+                    console.log(response); // Log the response from the server
+                },
+                error: function(error) {
+                    console.error(error); // Log any errors
+                }
+            });
         }
     }
 </script>
