@@ -57,6 +57,10 @@ if ($_SESSION['admin'] == 0) {
     .type-box .btn_delete:hover  {
         background-color: #8b0000;
     }
+
+    .nouveau-type {
+        display: none; 
+    }
     </style>
     <div id="ajouttype">
         <h1>Liste des types déjà existants</h1>
@@ -149,8 +153,15 @@ if ($_SESSION['admin'] == 0) {
             });
         }
     }
-</script>
 
+    function toggleNouveauTypeForm() {
+        $(".nouveau-type").slideToggle();
+    }
+
+</script>
+<button id="ajouterCatalogueBtn" onclick="toggleNouveauTypeForm()">Ajouter un catalogue</button>
+        
+        <div class="nouveau-type">
         <h1>Ajout d'un nouveau type</h1>
         <div class="presentation">
         <div class="contenu_plat">
@@ -172,6 +183,7 @@ if ($_SESSION['admin'] == 0) {
         </form>
         </div>
         </div>
+    </div>
     </div>
     
 
