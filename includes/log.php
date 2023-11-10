@@ -10,7 +10,8 @@
             $q->execute(['mail' => $mail]);
             $result = $q->fetch();
 
-            if($result == true){
+
+            if($result !=0){
                 // Le compte existe
                 $hashmdp = $result['mdp'];
                 if(password_verify($mdp, $hashmdp)){
@@ -23,7 +24,7 @@
                     echo "<script type='text/javascript'>alert('Mot de passe incorrecte');</script>";
                 }
             }else{
-                echo "<script type='text/javascript'>alert('Aucun compte n'a été créé avec l'adresse mail : '.$mail.' ...');</script>";
+                echo "<script type='text/javascript'>alert('Pas de compte créé avec cette adresse mail')</script>";
             }
         }
     }

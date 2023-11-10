@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include 'includes/database.php';
 global $db;
@@ -50,9 +51,9 @@ $image = $result['image'];
 </div>
 <br>
 <div id="prixTotalDiv">Prix total : </div>
-<button type="button" id="fermerPanier" class="fermerPanier">Fermer</button>
-<button type="button" id="viderPanier" class="viderPanier">Vider le panier</button>
 <button type="button" id="commander" class="commander">Commander</button>
+<button type="button" id="viderPanier" class="viderPanier">Vider le panier</button>
+<button type="button" id="fermerPanier" class="fermerPanier">Fermer</button>
 </div>
 
 <script>
@@ -180,15 +181,19 @@ function updatePrixTotal(prixTotal){
 document.getElementById('viderPanier').addEventListener('click', function() {
     updatePrixTotal(0);
     listpanier_plats = [];
+    listpanier_boissons = [];
     var panierDiv = document.getElementById('panierContenu');
     panierDiv.innerHTML = '<p>Le panier est vide.</p>';
-    document.cookie = "panier=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+    document.cookie = "panier_plats=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+    document.cookie = "panier_boissons=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+
 });
 
 document.getElementById('commander').addEventListener('click', function() {
-    if (listpanier_plats.length >0){
+    if ((listpanier_plats.length + listpanier_boissons.length) >0){
         // Vérifier si l'utilisateur est connecté
         var isLoggedIn = <?php echo json_encode(isset($_SESSION['mail'])); ?>;
+        console.log('login : '+ isLoggedIn);
         if (isLoggedIn) {
             if (confirm("Voulez-vous commander ces produits ?")) {
                 createCommande().then(function(response) {
@@ -216,7 +221,8 @@ function createCommande(){
     xhr.open("POST", "create_commande.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var listpanier_platsJSON = JSON.stringify(listpanier_plats);
-    var params = "listpanier_plats=" + listpanier_platsJSON;
+    var listpanier_boissonsJSON = JSON.stringify(listpanier_boissons);
+    var params = "listpanier_plats=" + listpanier_platsJSON+"&listpanier_boissons=" + listpanier_boissonsJSON;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
@@ -229,6 +235,8 @@ function createCommande(){
     };
 
     xhr.send(params);
+
+
 });
 
 }

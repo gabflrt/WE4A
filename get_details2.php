@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 
 include 'includes/database.php';
 global $db;
@@ -49,9 +51,9 @@ $image = $result['image'];
 </div>
 <br>
 <div id="prixTotalDiv">Prix total : </div>
-<button type="button" id="fermerPanier" class="fermerPanier">Fermer</button>
-<button type="button" id="viderPanier" class="viderPanier">Vider le panier</button>
 <button type="button" id="commander" class="commander">Commander</button>
+<button type="button" id="viderPanier" class="viderPanier">Vider le panier</button>
+<button type="button" id="fermerPanier" class="fermerPanier">Fermer</button>
 </div>
 
 <script>
@@ -215,8 +217,9 @@ function createCommande(){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "create_commande.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var listpanier_platsJSON = JSON.stringify(listpanier_plats);
     var listpanier_boissonsJSON = JSON.stringify(listpanier_boissons);
-    var params = "listpanier_boissons=" + listpanier_boissonsJSON;
+    var params = "listpanier_plats=" + listpanier_platsJSON+"&listpanier_boissons=" + listpanier_boissonsJSON;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {

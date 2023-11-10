@@ -22,7 +22,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
         if(isset($_SESSION['prenom'])) {
             echo "<p>Bonjour ".$_SESSION['prenom']." !</p>";
             if ($_SESSION['admin'] == 0){
-                echo  "<p> Compte : client</p>";
+                //echo  "<p> Compte : client</p>";
             }else if ($_SESSION["admin"] == 1){
                 echo  "<p> Compte : admin</p>";
             }

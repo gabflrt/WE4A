@@ -23,7 +23,7 @@
         <input class="register" name="prenom" type="text" placeholder="Votre Prénom" value="<?php echo $user['prenom']; ?>" required><br/>
         <input class="register" name="nom" type="text" placeholder="Votre Nom" value="<?php echo $user['nom']; ?>" required><br/>
         <input class="register" name="adresse" type="text" placeholder="Votre Adresse" value="<?php echo $user['adresse']; ?>" required><br/>
-        <p class="register" id="mail_register" name="mail">Votre mail : <?php echo $user['mail']; ?></p><br/>
+        <p class="register" id="mail_register" name="mail"><?php echo $user['mail']; ?></p><br/>
         <input class="register" name="num" type="text" placeholder="Votre Numéro" value="<?php echo $user['num']; ?>" required><br/>
         <input class="register" name="date_naissance" type="date" value="<?php echo $user['naissance']; ?>" min="1910-01-01" max="<?php echo date('Y-m-d'); ?>"  ><br/>
         <input class="register" name="mdp" type="password" placeholder="Votre nouveau Mot de passe" required><br/>
