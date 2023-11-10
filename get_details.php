@@ -56,19 +56,34 @@ $image = $result['image'];
 </div>
 
 <script>
-var listpanier = [];
+var listpanier_plats = [];
 var cookies = document.cookie.split(';');
 for (var i = 0; i < cookies.length; i++) {
     var cookie = cookies[i].trim();
-    if (cookie.indexOf('panier=') === 0) {
-        var productIdsString = cookie.substring('panier='.length, cookie.length);
+    if (cookie.indexOf('panier_plats=') === 0) {
+        var productIdsString = cookie.substring('panier_plats='.length, cookie.length);
         var productIds = JSON.parse(productIdsString);
         for (var j = 0; j < productIds.length; j++) {
             var element = productIds[j];
-            listpanier.push(element);
+            listpanier_plats.push(element);
         }
     }
 }
+
+var listpanier_boissons = [];
+var cookies = document.cookie.split(';');
+for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+    if (cookie.indexOf('panier_boissons=') === 0) {
+        var productIdsString = cookie.substring('panier_boissons='.length, cookie.length);
+        var productIds = JSON.parse(productIdsString);
+        for (var j = 0; j < productIds.length; j++) {
+            var element = productIds[j];
+            listpanier_boissons.push(element);
+        }
+    }
+}
+
 
 
 document.getElementById('afficherPanier').addEventListener('click',function() {
@@ -86,15 +101,14 @@ document.getElementById('fermerPanier').addEventListener('click', function() {
 document.getElementById('ajouterAuPanier').addEventListener('click', function() {
     var idproduit = <?php echo json_encode($id) ?>;
 
-
     // Créer une liste d'identifiants de produits
-    listpanier.push(idproduit);
+    listpanier_plats.push(idproduit);
 
     // Convertir la liste en chaîne pour le stockage dans un cookie
-    var productIdsString = JSON.stringify(listpanier);
+    var productIdsString = JSON.stringify(listpanier_plats);
 
     // Créer le cookie "panier"
-    document.cookie = "panier=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
+    document.cookie = "panier_plats=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
 
     // Mettez à jour l'affichage du panier.
     displayPanier();
@@ -125,10 +139,10 @@ function updatePanier(){
     var prixTotal = 0;
         panierDiv.innerHTML = '';
         
-        for (var i = 0; i < listpanier.length; i++) {
+        for (var i = 0; i < listpanier_plats.length; i++) {
             // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "get_produit.php?id=" + listpanier[i], true);
+            xhr.open("GET", "get_produit.php?id=" + listpanier_plats[i], true);
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var product = JSON.parse(this.responseText);
@@ -138,7 +152,22 @@ function updatePanier(){
                 updatePrixTotal(prixTotal)
             };
             xhr.send();
-    }
+        }
+        for (var i = 0; i < listpanier_boissons.length; i++) {
+            // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "get_produit_boisson.php?id=" + listpanier_boissons[i], true);
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var product = JSON.parse(this.responseText);
+                    prixTotal = parseInt(prixTotal) + parseInt(product.prix);
+                    panierDiv.innerHTML += '<p>' + product.nom + ': ' + product.prix + '€</p>';
+                }
+                updatePrixTotal(prixTotal)
+            };
+            xhr.send();
+        }
+        
     }
 
 function updatePrixTotal(prixTotal){
@@ -150,33 +179,34 @@ function updatePrixTotal(prixTotal){
 
 document.getElementById('viderPanier').addEventListener('click', function() {
     updatePrixTotal(0);
-    listpanier = [];
+    listpanier_plats = [];
     var panierDiv = document.getElementById('panierContenu');
     panierDiv.innerHTML = '<p>Le panier est vide.</p>';
     document.cookie = "panier=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
 });
 
 document.getElementById('commander').addEventListener('click', function() {
+    if (listpanier_plats.length >0){
+        // Vérifier si l'utilisateur est connecté
+        var isLoggedIn = <?php echo json_encode(isset($_SESSION['mail'])); ?>;
+        if (isLoggedIn) {
+            if (confirm("Voulez-vous commander ces produits ?")) {
+                createCommande().then(function(response) {
+                    var panierDiv = document.getElementById('panierContenu');
+                    panierDiv.innerHTML = '<p>Commande effectuée.</p>';
+                    listpanier_plats = [];
 
-    if (listpanier.length >0){
-        if (confirm("Voulez-vous commander ces produits ?")) {
-            createCommande().then(function(response) {
-                var panierDiv = document.getElementById('panierContenu');
-                panierDiv.innerHTML = '<p>Commande effectuée.</p>';
-                listpanier = [];
-
-                window.location.href = "./commandes_precedentes.php";
-            }).catch(function(error) {
-                alert("Erreur lors de la création de la commande ");
-            });
-
-
+                    window.location.href = "./commandes_precedentes.php";
+                }).catch(function(error) {
+                    alert("Erreur lors de la création de la commande ");
+                });
+            }
+        } else {
+            alert("Vous devez être connecté pour passer une commande !");
         }
     }else{
         alert("Vous n'avez aucun produit dans votre panier !")
     }
-
-    
 });
 
 
@@ -185,8 +215,8 @@ function createCommande(){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "create_commande.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var listPanierJSON = JSON.stringify(listpanier);
-    var params = "listPanier=" + listPanierJSON;
+    var listpanier_platsJSON = JSON.stringify(listpanier_plats);
+    var params = "listpanier_plats=" + listpanier_platsJSON;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
