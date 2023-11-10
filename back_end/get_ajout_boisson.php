@@ -13,7 +13,7 @@
         <input type="checkbox" name="alcool" value="1"><br>
         <label for="image">Image :</label>
         <input type="file" name="image"><br>
-        <input type="submit" value="Modifier">
+        <input type="submit" value="Ajouter">
     </form>
 </div>
 </div>
