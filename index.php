@@ -44,7 +44,52 @@ if (isset($_SESSION['mail'])&&$_SESSION['admin'] == 1) {
         tout en savourant des produits locaux frais et de qualité. Rejoignez-nous et laissez-nous vous faire voyager 
         à travers les délices de la France, le tout à un prix qui ne pèsera pas sur votre portefeuille. 
         Nous avons hâte de vous accueillir et de vous faire vivre une expérience gastronomique exceptionnelle.</p>
-    </section>       
+    </section>      
+    
+    <?php 
+         if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0){
+
+            include "get_commande_client.php";
+            $lastCommand = array_pop($Commands);
+
+            echo '<div class="derniere_commande">';
+
+            echo "<h1>Votre dernière commande</h1>";
+            echo "<br>";
+
+            echo '<p><strong>Numéro commande :</strong> '. $lastCommand['id_commande'] .'</p>';
+            echo '<p><strong>Date commande : </strong>'. $lastCommand['date_heure'] .'</p>';
+
+            $prixTotal=0;
+            echo '<p><strong>Détails commande</strong></p>';
+            foreach ($lastCommand['commandInfo'] as $commandInfo) {
+                $platId = $commandInfo['id_plat'];
+
+                $PlatInfoQuery = $db->prepare("SELECT nom, prix FROM plats WHERE id_plat = :platId");
+                $PlatInfoQuery->bindParam(':platId', $platId);
+                $PlatInfoQuery->execute();
+                $platInfo = $PlatInfoQuery->fetch();
+                $prixTotal+= $platInfo['prix'];
+                echo '<p>' . $platInfo['nom'] . ' - ' . $platInfo['prix']. '€</p>';
+            }
+
+            foreach ($lastCommand['commandBoissonInfo'] as $commandInfo) {
+                $boissonId = $commandInfo['id_boisson'];
+
+                $BoissonInfoQuery = $db->prepare("SELECT nom, prix FROM boissons WHERE id_boisson = :boissonId");
+                $BoissonInfoQuery->bindParam(':boissonId', $boissonId);
+                $BoissonInfoQuery->execute();
+                $BoissonInfo = $BoissonInfoQuery->fetch();
+                $prixTotal+= $BoissonInfo['prix'];
+                echo '<p>' . $BoissonInfo['nom'] . ' - ' . $BoissonInfo['prix']. '€</p>';
+            }
+
+            echo '<p class="presentation">Prix total : '. $prixTotal . '€</p>';
+
+            echo '</div>'; 
+            }
+        
+    ?>
 
     <div class="infos">
         <div class="horaires-ouverture">            

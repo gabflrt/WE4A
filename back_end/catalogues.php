@@ -63,7 +63,7 @@ if ($_SESSION['admin'] == 0) {
             inputField.value = currentName;
             typeHeader.innerHTML = '';
             typeHeader.appendChild(inputField);
-            inputField.focus();
+            inputField.focus();https://github.com/gabflrt/WE4A.git
             inputField.setSelectionRange(0, inputField.value.length); 
             
             button.removeEventListener('click', renameCatalog);

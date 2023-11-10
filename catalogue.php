@@ -7,7 +7,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>Liste des plats</title>
-
+    <style>
+    .type-container {
+      display: inline-block;
+      vertical-align: top;
+      margin:100px;
+    }
+  </style>
     <script>
     function loadPlatsType(type) {
     $.get({
@@ -94,96 +100,63 @@ function loadDetails2(boisson) {
     <?php
     include 'pagesParts/header.php';
     
+    $distinctTypes = $db->query("SELECT DISTINCT type FROM plats")->fetchAll(PDO::FETCH_COLUMN);
 ?>
 
-
+    
 
 <table class="menu">
-  <tr>
-    <td>
-      <a href="#" onclick="loadPlatsType('entree');">
-        <h3>Entrées</h3>
-      </a>
-    </td>
-    <td>
-      <a href="#" onclick="loadPlatsType('plat');">
-        <h3>Plats</h3>
-      </a>
-    </td>
-    <td>
-      <a href="#" onclick="loadPlatsType('dessert'); return false;">
-        <h3>Desserts</h3>
-      </a>
-    </td>
-    <td>
-      <a href="#" onclick="loadBoissons(); return false;">
-        <h3>Boissons</h3>
-      </a>
-    </td>
-  </tr>
-</table>
+      <tr>
+      </br></br></br>
+        <?php
+        foreach ($distinctTypes as $type) {
+          echo '<td>';
+          echo '<a href="#" onclick="loadPlatsType(\'' . $type . '\');">';
+          echo '<h3>' . ucfirst($type) . '</h3>';
+          echo '</a>';
+          echo '</td>';
+        }
+        ?>
+        <td>
+        <a href="#" onclick="loadBoissons(); return false;">
+          <h3>Boissons</h3>
+        </a>
+      </td>
+      </tr>
+    </table>
 
-<div id="div1">
-  <div class="plats categories">
-  <div class="plat">
-    <?php 
-    $CalculNombrePlats = $db->prepare("SELECT id_plat FROM plats WHERE type='entree'");
-    $CalculNombrePlats->execute();
-    $plats = $CalculNombrePlats->fetchAll(PDO::FETCH_ASSOC);
-    
-    if (count($plats) > 0) {
-        $PlatAleatoire = $plats[array_rand($plats)]['id_plat'];
-    
-        $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
-        $PlatReq->bindParam(':plat', $PlatAleatoire);
-        $PlatReq->execute();
-        $result = $PlatReq->fetch();
-    }     
+
+    <div id="div1">
+ 
+    <?php
+      foreach ($distinctTypes as $type) {
+        $CalculNombrePlats = $db->prepare("SELECT id_plat FROM plats WHERE type=:type");
+        $CalculNombrePlats->bindParam(':type', $type);
+        $CalculNombrePlats->execute();
+        $plats = $CalculNombrePlats->fetchAll(PDO::FETCH_ASSOC);
+        
+        if (count($plats) > 0) {
+          $PlatAleatoire = $plats[array_rand($plats)]['id_plat'];
+  
+          $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
+          $PlatReq->bindParam(':plat', $PlatAleatoire);
+          $PlatReq->execute();
+          $result = $PlatReq->fetch();
     ?>
-    <h1>Entrées</h1>
-    <a href="#" onclick="loadPlatsType('entree');"><img src="data:image/jpg;base64,<?=base64_encode($result['image'])?>"/></a>
-  </div>
-    <div class="plat">
-      <?php 
-    $CalculNombrePlats = $db->prepare("SELECT id_plat FROM plats WHERE type='plat'");
-    $CalculNombrePlats->execute();
-    $plats = $CalculNombrePlats->fetchAll(PDO::FETCH_ASSOC);
-    
-    if (count($plats) > 0) {
-        $PlatAleatoire = $plats[array_rand($plats)]['id_plat'];
-    
-        $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
-        $PlatReq->bindParam(':plat', $PlatAleatoire);
-        $PlatReq->execute();
-        $result = $PlatReq->fetch();
-    }         ?>  
-      <h1>Plats</h1>
-      <a href="#" onclick="loadPlatsType('plat');"><img src = "data:image/png;base64,<?=base64_encode($result['image'])?>"/></a>
-    </div>
-  </div>
-
-    <div class="plats">
-      <div class="plat">
-          <?php 
-    $CalculNombrePlats = $db->prepare("SELECT id_plat FROM plats WHERE type='dessert'");
-    $CalculNombrePlats->execute();
-    $plats = $CalculNombrePlats->fetchAll(PDO::FETCH_ASSOC);
-    
-    if (count($plats) > 0) {
-        $PlatAleatoire = $plats[array_rand($plats)]['id_plat'];
-    
-        $PlatReq = $db->prepare("SELECT * FROM plats WHERE id_plat=:plat");
-        $PlatReq->bindParam(':plat', $PlatAleatoire);
-        $PlatReq->execute();
-        $result = $PlatReq->fetch();
-    }     
+        <div class="type-container">
+        <div class="plats categories">
+          <div class="plat">
+            <h1><?= ucfirst($type) ?></h1>
+            <a href="#" onclick="loadPlatsType('<?= $type ?>');"><img src="data:image/jpg;base64,<?= base64_encode($result['image']) ?>"/></a>
+          </div>
+          </div>
+        </div>
+    <?php
+        }
+      }
     ?>
-      <h1>Desserts</h1>
-      <a href="#" onclick="loadPlatsType('dessert');"><img src = "data:image/png;base64,<?=base64_encode($result['image'])?>"/></a>
-    </div>
-
-    
-    <div class="plat"> 
+        <div class="type-container">
+<div class="plat"> 
     <?php 
     $CalculNombrePlats = $db->prepare("SELECT id_boisson FROM boissons");
     $CalculNombrePlats->execute();
@@ -203,6 +176,8 @@ function loadDetails2(boisson) {
     </div>
   </div>
 </div>
+</div>
+  </div>
 
 <?php
     include 'pagesParts/footer.php'
