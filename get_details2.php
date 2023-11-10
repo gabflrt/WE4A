@@ -104,16 +104,15 @@ document.getElementById('ajouterAuPanier').addEventListener('click', function() 
     var idproduit = <?php echo json_encode($id) ?>;
 
 
-    // Créer une liste d'identifiants de produits
+    
     listpanier_boissons.push(idproduit);
 
-    // Convertir la liste en chaîne pour le stockage dans un cookie
+    
     var productIdsString = JSON.stringify(listpanier_boissons);
 
-    // Créer le cookie "panier"
+    // Pour faire le cookie "panier"
     document.cookie = "panier_boissons=" + productIdsString + "; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
 
-    // Mettez à jour l'affichage du panier.
     displayPanier();
     updatePanier();
 });
@@ -143,7 +142,7 @@ function updatePanier(){
         panierDiv.innerHTML = '';
         
         for (var i = 0; i < listpanier_boissons.length; i++) {
-            // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
+            // On utilise AJAX pour obtenir le nom et le prix du produit à partir de l'ID
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "get_produit_boisson.php?id=" + listpanier_boissons[i], true);
             xhr.onreadystatechange = function() {
@@ -157,7 +156,7 @@ function updatePanier(){
             xhr.send();
         }
         for (var i = 0; i < listpanier_plats.length; i++) {
-            // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
+            
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "get_produit.php?id=" + listpanier_plats[i], true);
             xhr.onreadystatechange = function() {
@@ -189,7 +188,7 @@ document.getElementById('viderPanier').addEventListener('click', function() {
 
 document.getElementById('commander').addEventListener('click', function() {
     if (listpanier_boissons.length >0){
-        // Vérifier si l'utilisateur est connecté
+        // Pour vérifier si l'utilisateur est connecté
         var isLoggedIn = <?php echo json_encode(isset($_SESSION['mail'])); ?>;
         if (isLoggedIn) {
             if (confirm("Voulez-vous commander ces produits ?")) {

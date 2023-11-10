@@ -42,7 +42,7 @@
             include './includes/log.php';
         ?>
         
-        <!--Sinon autoriser possibilité de s'inscrire ou si connecté, de modifier son profil -->
+        <!--Sinon on autorise la possibilité de s'inscrire ou si connecté, de modifier le profil -->
         <?php 
          if($_SESSION == true){
             echo '<a href="modifications.php">
