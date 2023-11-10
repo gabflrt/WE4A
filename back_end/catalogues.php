@@ -21,6 +21,7 @@ if ($_SESSION['admin'] == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/produits.css">
+    <link rel="stylesheet" href="../styles/catalogues.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Gestion catalogues</title>
 </head>
@@ -29,39 +30,6 @@ if ($_SESSION['admin'] == 0) {
 
     <?php include("./back_header.php"); ?>
 
-    <style>
-    .type-box{
-        background-color: #f2f2f2;
-        border: 1px solid #ccc;
-        padding: 20px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    
-
-    .type-box .btn_rename {
-        background-color: #4CAF50;
-
-    }
-
-    .type-box .btn_delete {
-        background-color: #f44336;
-    }
-
-    .type-box .btn_rename:hover {
-        background-color: #45a049;
-    }
-
-    .type-box .btn_delete:hover  {
-        background-color: #8b0000;
-    }
-
-    .nouveau-type {
-        display: none; 
-    }
-    </style>
     <div id="ajouttype">
         <h1>Liste des types déjà existants</h1>
         <?php

@@ -94,6 +94,17 @@ if ($_SESSION['admin'] == 0) {
                         echo '<p class="info-row">' . $platInfo['nom'] . ' - ' . $platInfo['prix']. '€</p>';
                     }
 
+                    foreach ($command['commandBoissonInfo'] as $commandInfo) {
+                        $boissonId = $commandInfo['id_boisson'];
+
+                        $BoissonInfoQuery = $db->prepare("SELECT nom, prix FROM boissons WHERE id_boisson = :boissonId");
+                        $BoissonInfoQuery->bindParam(':boissonId', $boissonId);
+                        $BoissonInfoQuery->execute();
+                        $BoissonInfo = $BoissonInfoQuery->fetch();
+                        $prixTotal+= $BoissonInfo['prix'];
+                        echo '<p class="info-row">' . $BoissonInfo['nom'] . ' - ' . $BoissonInfo['prix']. '€</p>';
+                    }
+
                     echo '<p class="info-row">Prix total : '. $prixTotal . '€</p>';
                     
                     $dateCommand= date("Y-m-d", strtotime($command['date_heure']));

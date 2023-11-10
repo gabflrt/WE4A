@@ -1,0 +1,31 @@
+.type-box {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.type-box .btn_rename {
+    background-color: #4CAF50;
+
+}
+
+.type-box .btn_delete {
+    background-color: #f44336;
+}
+
+.type-box .btn_rename:hover {
+    background-color: #45a049;
+}
+
+.type-box .btn_delete:hover {
+    background-color: #8b0000;
+}
+
+.nouveau-type {
+    display: none;
+}

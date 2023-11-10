@@ -33,15 +33,13 @@ if ($_SESSION['admin'] == 0) {
         <h1>Gestion des Plats</h1>
     <?php
 
-// Préparez et exécutez la requête SQL pour obtenir les produits
+// Prépare et exécute la requête SQL pour obtenir les plats
 $q_plats = $db->prepare("SELECT * FROM plats ORDER BY nom");
 $q_plats->execute();
-
-// Récupérez les produits
 $plats = $q_plats->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($plats as $plat) {
-    // Affichez chaque produit avec les boutons Renommer, Modifier et Effacer
+    // Affiche chaque produit avec les boutons Renommer, Modifier et Effacer
     echo '<div id="product">';
     echo '<h2>' . htmlspecialchars($plat['nom']) . '</h2>';
     echo '<p>Prix: ' . htmlspecialchars($plat['prix']) . '€</p>';
@@ -66,15 +64,13 @@ foreach ($plats as $plat) {
         <h1>Gestion des boissons</h1>
     <?php
 
-// Préparez et exécutez la requête SQL pour obtenir les produits
+// Prépare et exécute la requête SQL pour obtenir les boissons
 $q_boissons = $db->prepare("SELECT * FROM boissons ORDER BY nom");
 $q_boissons->execute();
-
-// Récupérez les produits
 $boissons = $q_boissons->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($boissons as $boisson) {
-    // Affichez chaque produit avec les boutons Renommer, Modifier et Effacer
+    // Affiche chaque produit avec les boutons Renommer, Modifier et Effacer
     echo '<div id="product">';
     echo '<h2>' . htmlspecialchars($boisson['nom']) . '</h2>';
     echo '<p>Prix: ' . htmlspecialchars($boisson['prix']) . '€</p>';
