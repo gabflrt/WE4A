@@ -35,7 +35,7 @@ function loadPlatsPage(type,page) {
 
 function loadDetails(plat) {
     $.get({
-      url: "get_details.php", 
+      url: "get_details.php",
       data:{
         "plat":plat
       },
@@ -43,6 +43,8 @@ function loadDetails(plat) {
       $("#div1").html(result);
     }
   });
+  var nouvelleURL = "catalogue.php?plat="+plat;
+  window.history.pushState({}, "", nouvelleURL);
 }
 
 function loadBoissons() {
@@ -53,6 +55,8 @@ function loadBoissons() {
       $("#div1").html(result);
     }
 });
+
+    
 }
 
 function loadBoissonsPage(page) {
@@ -77,6 +81,8 @@ function loadDetails2(boisson) {
       $("#div1").html(result);
     }
   });
+  var nouvelleURL = "catalogue.php?boisson="+boisson;
+  window.history.pushState({}, "", nouvelleURL);
 }
 
 
