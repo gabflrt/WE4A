@@ -25,7 +25,7 @@ if(isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['type'])
     $insertPlatReq->bindParam(':prix', $prix);
     $insertPlatReq->bindParam(':type', $type);
     $insertPlatReq->bindParam(':chaud', $chaud);
-    $insertPlatReq->bindParam(':image', $image);
+    $insertPlatReq->bindParam(':image', $imageData, PDO::PARAM_LOB);
     $insertPlatReq->execute();
 
     // Rediriger l'utilisateur vers la page de détails du nouveau plat

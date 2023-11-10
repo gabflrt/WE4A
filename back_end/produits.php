@@ -43,9 +43,9 @@ foreach ($plats as $plat) {
     echo '<div id="product">';
     echo '<h2>' . htmlspecialchars($plat['nom']) . '</h2>';
     echo '<p>Prix: ' . htmlspecialchars($plat['prix']) . '€</p>';
-    echo '<button onclick="renamePlat(' . $plat['id_plat'] . ')">Renommer</button>';
+    echo '<button class="renommer" onclick="renamePlat(' . $plat['id_plat'] . ')">Renommer</button>';
     echo '<button onclick="loadModifsPlat(' . $plat['id_plat'] . ')">Modifier</button>';
-    echo '<button onclick="deletePlat(' . $plat['id_plat'] . ')">Effacer</button>';
+    echo '<button class="supprimer" onclick="deletePlat(' . $plat['id_plat'] . ')">Supprimer</button>';
     echo '</div>';
 }
 ?>
@@ -74,9 +74,9 @@ foreach ($boissons as $boisson) {
     echo '<div id="product">';
     echo '<h2>' . htmlspecialchars($boisson['nom']) . '</h2>';
     echo '<p>Prix: ' . htmlspecialchars($boisson['prix']) . '€</p>';
-    echo '<button onclick="renameBoisson(' . $boisson['id_boisson'] . ')">Renommer</button>';
+    echo '<button class="renommer" onclick="renameBoisson(' . $boisson['id_boisson'] . ')">Renommer</button>';
     echo '<button onclick="loadModifsBoisson(' . $boisson['id_boisson'] . ')">Modifier</button>';
-    echo '<button onclick="deleteBoisson(' . $boisson['id_boisson'] . ')">Effacer</button>';
+    echo '<button class="supprimer" onclick="deleteBoisson(' . $boisson['id_boisson'] . ')">Supprimer</button>';
     echo '</div>';
 }
 ?>
