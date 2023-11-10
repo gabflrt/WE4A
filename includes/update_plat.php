@@ -9,7 +9,7 @@ if(isset($_POST['id_plat'])) {
     $prix = filter_input(INPUT_POST, 'prix', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $chaud = isset($_POST['chaud']) ? 1 : 0;
 
-    // Vérifier si une image a été téléchargée
+    // Vérifie si une image a été téléchargée
     if(isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $image = $_FILES['image']['tmp_name'];
         $imageData = file_get_contents($image);
@@ -21,7 +21,7 @@ if(isset($_POST['id_plat'])) {
         $image = $result['image'];
    }
 
-    // Mettre à jour les informations du plat dans la base de données
+    // Met à jour les informations du plat dans la base de données
     $updatePlatReq = $db->prepare("UPDATE plats SET nom=:nom, description=:description, prix=:prix, chaud=:chaud, image=:image WHERE id_plat=:id_plat");
     $updatePlatReq->bindParam(':nom', $nom);
     $updatePlatReq->bindParam(':description', $description);
@@ -31,7 +31,7 @@ if(isset($_POST['id_plat'])) {
     $updatePlatReq->bindParam(':id_plat', $id_plat);
     $updatePlatReq->execute();
 
-    // Rediriger l'utilisateur vers la page de détails du plat modifié
+    // Redirige l'utilisateur vers la page de détails du plat modifié
     header("Location: ../back_end/produits.php");
     exit();
 }

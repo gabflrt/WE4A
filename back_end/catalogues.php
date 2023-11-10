@@ -70,8 +70,7 @@ if ($_SESSION['admin'] == 0) {
             button.addEventListener('click', function() {
                 var newName = inputField.value.trim();
                 if (newName !== '') {
-                    typeHeader.innerText = newName;
-                    //AJAX call here to update the name of type in the DB                
+                    typeHeader.innerText = newName;              
                     updateTypeInDatabase(currentName, newName);
                 } else {
                     typeHeader.innerText = currentName;
@@ -87,22 +86,22 @@ if ($_SESSION['admin'] == 0) {
     }
 
     function updateTypeInDatabase(oldName, newName) {
-        // Make an AJAX call to update the name of the type in the DB
+        // Appeler une fonction AJAX pour mettre à jour le nom du type dans la base de données
         $.ajax({
             type: 'POST',
-            url: 'updateType.php', // Change this to the actual file handling the update
+            url: 'updateType.php', // Changer le type de données envoyées au serveur pour qu'il puisse les traiter
             data: { oldName: oldName, newName: newName },
             success: function(response) {
-                console.log(response); // Log the response from the server
+                console.log(response); 
             },
             error: function(error) {
-                console.error(error); // Log any errors
+                console.error(error); 
             }
         });
     }
 
     function deleteTypeInDatabase(button, typeToDelete) {
-        // Make an AJAX call to delete the type in the DB
+        // Appelle une fonction AJAX pour supprimer le type dans la base de données
         var typeBox = button.parentNode;
         var typeToDelete = typeBox.querySelector('.type-name').innerText;
 
@@ -110,13 +109,13 @@ if ($_SESSION['admin'] == 0) {
             typeBox.remove();            
             $.ajax({
                 type: 'POST',
-                url: 'deleteType.php', // Change this to the actual file handling the delete
+                url: 'deleteType.php', // Change le type de données envoyées au serveur pour qu'il puisse les traiter
                 data: { typeToDelete: typeToDelete },
                 success: function(response) {
-                    console.log(response); // Log the response from the server
+                    console.log(response); 
                 },
                 error: function(error) {
-                    console.error(error); // Log any errors
+                    console.error(error); 
                 }
             });
         }

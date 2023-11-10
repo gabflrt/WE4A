@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $oldName = $_POST['oldName'];
     $newName = $_POST['newName'];
 
-    // Update the type in the plats table
+    // Mettre à jour le type dans la table plats
     $updateTypeReq = $db->prepare("UPDATE plats SET type = :newName WHERE type = :oldName");
     $updateTypeReq->bindParam(':oldName', $oldName);
     $updateTypeReq->bindParam(':newName', $newName);
