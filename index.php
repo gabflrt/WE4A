@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php session_start();
+
+// Vérifie si l'utilisateur est un client
+if (isset($_SESSION['mail'])&&$_SESSION['admin'] == 1) {
+    // Redirige vers la page d'accueil du front end si l'utilisateur est un client
+    header('Location: ./back_end/index.php');
+    exit;
+} ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

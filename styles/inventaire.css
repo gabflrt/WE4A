@@ -1,0 +1,12 @@
+.command-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f9f9f9;
+}
+
+.info-row {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+
+}

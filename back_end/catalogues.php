@@ -4,7 +4,7 @@ session_start();
 // Vérifie si l'utilisateur est connecté
 if (!isset($_SESSION['mail'])) {
     // Redirige vers la page d'accueil du back end si l'utilisateur n'est pas connecté
-    header('Location: ./accueil.php');
+    header('Location: ./index.php');
     exit;
 }
 // Vérifie si l'utilisateur est un client

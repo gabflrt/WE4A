@@ -2,8 +2,8 @@
     <header>
         <nav>
             <ul>
-                <a href="./accueil.php"><img src="../images/logo.jpg" alt="Logo"></a>
-                <li><a href="./accueil.php">Accueil</a></li>
+                <a href="./index.php"><img src="../images/logo.jpg" alt="Logo"></a>
+                <li><a href="./index.php">Accueil</a></li>
                 <li><a href="./catalogues.php">Catalogues</a></li>
                 <li><a href="./produits.php">Produits</a></li>
                 <li><a href="./inventaire.php">Inventaire</a></li>
