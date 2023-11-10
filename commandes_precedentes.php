@@ -1,4 +1,13 @@
+<?php
+session_start();
 
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['mail'])) {
+    // Redirige vers la page d'accueil si l'utilisateur n'est pas connecté
+    header('Location: ./index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
