@@ -123,3 +123,20 @@ textarea {
     align-items: center;
     justify-content: center;
 }
+
+.renommer {
+    background-color: #4CAF50;
+
+}
+
+.supprimer {
+    background-color: #f44336;
+}
+
+.renommer:hover {
+    background-color: #45a049;
+}
+
+.supprimer:hover {
+    background-color: #8b0000;
+}
