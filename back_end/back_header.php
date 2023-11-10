@@ -31,6 +31,8 @@
         <?php
             if(isset($_POST['deco'])){
                 session_destroy();
+                header("refresh:0");
+
             }
             include '../includes/log.php';
         ?>

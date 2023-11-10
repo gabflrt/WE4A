@@ -1,10 +1,5 @@
 <?php session_start(); 
-// Vérifie si l'utilisateur est un admin
-if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
-    // Redirige vers la page d'accueil du back end si l'utilisateur est un admin
-    header('Location: ./back_end/accueil.php');
-    exit;
-}
+
 
 ?>
 <link rel="stylesheet" href="styles/header.css">
@@ -58,6 +53,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
         <?php
             if(isset($_POST['deco'])){
                 session_destroy();
+                header("refresh:0");
             }
             include './includes/log.php';
         ?>
