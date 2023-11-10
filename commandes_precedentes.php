@@ -49,10 +49,10 @@ if (!isset($_SESSION['mail'])) {
 
                 include "get_commande_client.php";
                 foreach ($Commands as $command) {
-                    // Wrap each command in a styled container
+                    
                     echo '<div class="command-container">';
 
-                    // Écrit les informations d'un client et le commandId
+                    // Pour écrire les informations d'un client et le commandId
                     echo '<p class="info-row"><strong>Numéro commande :</strong> '. $command['id_commande'] .'</p>';
                     echo '<p class="info-row"><strong>Client :</strong> ' . $command['clientInfo']['nom'] . ' ' . $command['clientInfo']['prenom'] . '</p>';
                     echo '<p class="info-row"><strong>Date commande : </strong>'. $command['date_heure'] .'</p>';

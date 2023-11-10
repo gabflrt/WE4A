@@ -141,7 +141,7 @@ function updatePanier(){
         panierDiv.innerHTML = '';
         
         for (var i = 0; i < listpanier_plats.length; i++) {
-            // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
+            
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "get_produit.php?id=" + listpanier_plats[i], true);
             xhr.onreadystatechange = function() {
@@ -155,7 +155,7 @@ function updatePanier(){
             xhr.send();
         }
         for (var i = 0; i < listpanier_boissons.length; i++) {
-            // Utilisez AJAX pour obtenir le nom et le prix du produit à partir de l'ID
+            
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "get_produit_boisson.php?id=" + listpanier_boissons[i], true);
             xhr.onreadystatechange = function() {
